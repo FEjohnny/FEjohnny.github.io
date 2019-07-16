@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-web通信技术及其实现方式 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;传统的Web数据更新，必须要刷新网页才能显示更新的内容。这是浏览器采用的是B/S架构，而B/S架构是基于HTTP协议的。HTTP协议的工作模式就是客户端向服务器发送一个请求，服务器收到请求后返回响应。所以这种工作模式是基于请求显示数据的。这样的工作方式有其自身的好处，但是也会导致很多问题。在Web应用越来越火的今天，经常会遇到需要服务器主动发送数据到客户端的需求，比如事件推">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web通信技术及其实现方式">
+<meta property="og:url" content="http://yoursite.com/articles/web通信技术及其实现方式.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;传统的Web数据更新，必须要刷新网页才能显示更新的内容。这是浏览器采用的是B/S架构，而B/S架构是基于HTTP协议的。HTTP协议的工作模式就是客户端向服务器发送一个请求，服务器收到请求后返回响应。所以这种工作模式是基于请求显示数据的。这样的工作方式有其自身的好处，但是也会导致很多问题。在Web应用越来越火的今天，经常会遇到需要服务器主动发送数据到客户端的需求，比如事件推">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/7.jpg">
+<meta property="og:image" content="http://yoursite.com/images/8.jpg">
+<meta property="og:image" content="http://yoursite.com/images/9.jpg">
+<meta property="og:image" content="http://yoursite.com/images/10.jpg">
+<meta property="og:image" content="http://yoursite.com/images/11.jpg">
+<meta property="og:updated_time" content="2019-07-16T10:31:57.310Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web通信技术及其实现方式">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;传统的Web数据更新，必须要刷新网页才能显示更新的内容。这是浏览器采用的是B/S架构，而B/S架构是基于HTTP协议的。HTTP协议的工作模式就是客户端向服务器发送一个请求，服务器收到请求后返回响应。所以这种工作模式是基于请求显示数据的。这样的工作方式有其自身的好处，但是也会导致很多问题。在Web应用越来越火的今天，经常会遇到需要服务器主动发送数据到客户端的需求，比如事件推">
+<meta name="twitter:image" content="http://yoursite.com/images/7.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-web通信技术及其实现方式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/web通信技术及其实现方式.html" class="article-date">
+  	<time datetime="2018-08-05T17:50:49.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      web通信技术及其实现方式
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;传统的Web数据更新，必须要刷新网页才能显示更新的内容。这是浏览器采用的是B/S架构，而B/S架构是基于HTTP协议的。HTTP协议的工作模式就是客户端向服务器发送一个请求，服务器收到请求后返回响应。所以这种工作模式是基于请求显示数据的。这样的工作方式有其自身的好处，但是也会导致很多问题。在Web应用越来越火的今天，经常会遇到需要服务器主动发送数据到客户端的需求，比如事件推送、Web聊天等。这些需求使用传统的Web数据更新工作模式是无法实现的，因此就需要一项新的技术：Web实时通信技术。<br><a id="more"></a></p>
+<h1 id="一、短轮询"><a href="#一、短轮询" class="headerlink" title="一、短轮询"></a>一、短轮询</h1><h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>客户端发送请求，服务端立刻返回，客户端处理完毕后继续发送下一个请求。</p>
+<p><img src="/images/7.jpg" alt=""></p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><p>客户端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 轮询方法</span><br><span class="line">let timer = setTimeout(() =&gt; &#123;</span><br><span class="line">    getMessage();</span><br><span class="line">&#125;,1000);</span><br><span class="line">// 获取消息方法</span><br><span class="line">function getMessage() &#123;</span><br><span class="line">    let xhr = new XMLHttpRequest();</span><br><span class="line">    xhr.onreadystatechange = function () &#123;</span><br><span class="line">        if(xhr.readyState === 4 &amp;&amp; (xhr.status === 200 || xhr.status === 304) )&#123;</span><br><span class="line">            document.getElementById(&apos;number&apos;).innerText = xhr.responseText;</span><br><span class="line">            clearTimeout(timer);</span><br><span class="line">            timer = setTimeout(() =&gt; &#123;</span><br><span class="line">                getMessage();</span><br><span class="line">            &#125;,1000);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xhr.open(&apos;get&apos;,&apos;/message&apos;);</span><br><span class="line">    xhr.send(&apos;&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>服务端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">let app = new express();</span><br><span class="line">let count = 0;</span><br><span class="line"></span><br><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">    count++;</span><br><span class="line">&#125;,5000); // 每个五秒，改变一下返回值</span><br><span class="line"></span><br><span class="line">app.listen(3000,() =&gt; &#123;</span><br><span class="line">    console.log(&apos;listen port 3000&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/&apos;,function (req, res) &#123;</span><br><span class="line">    res.sendfile(&apos;./index.html&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/message&apos;,function (req, res) &#123;</span><br><span class="line">    res.end(count.toString());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;客户端向服务端发起一个请求，获取并处理好信息之后，间隔一秒再次发起该请求，如此循环，就可以达到轮询的目的。这里注意一下，我们在用定时器的时候，并没有使用setInterval，而使用的setTimeout；原因很简单，如果使用setInterval，服务器如果还没有响应当前请求的话，可能会出现重复发起该请求的情况。</p>
+<p>&emsp;&emsp;缺点：在使用短轮询的时候，我们每间隔一秒就向服务器请求新数据，但是服务器的数据是每个5秒（demo是5秒，实际情况下什么可能都有，就是不一定是间隔一秒）才会产生一个新数据，这样会造成很多不必要的网络传输和资源浪费。</p>
+<h1 id="二、长轮询"><a href="#二、长轮询" class="headerlink" title="二、长轮询"></a>二、长轮询</h1><h2 id="基本原理-1"><a href="#基本原理-1" class="headerlink" title="基本原理"></a>基本原理</h2><p>客户端发送请求，服务端会阻塞请求不会立刻返回，直到有数据或超时才返回给客户端，客户端处理完毕后继续发送下一个请求。长轮询就可以弥补短轮询短那个致命缺点。</p>
+<p><img src="/images/8.jpg" alt=""></p>
+<h2 id="实现方式-1"><a href="#实现方式-1" class="headerlink" title="实现方式"></a>实现方式</h2><p>客服端代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 轮询方法</span><br><span class="line">function getMessage() &#123;</span><br><span class="line">    let xhr = new XMLHttpRequest();</span><br><span class="line">    xhr.onreadystatechange = function () &#123;</span><br><span class="line">        if(xhr.readyState === 4 &amp;&amp; (xhr.status === 200 || xhr.status === 304) )&#123;</span><br><span class="line">            document.getElementById(&apos;number&apos;).innerText = xhr.responseText;</span><br><span class="line">            getMessage();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xhr.open(&apos;get&apos;,&apos;/message&apos;);</span><br><span class="line">    xhr.send(&apos;&apos;);</span><br><span class="line">&#125;</span><br><span class="line">getMessage();</span><br></pre></td></tr></table></figure>
+<p>服务端代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">let app = new express();</span><br><span class="line">let count = 0;</span><br><span class="line">let lastCount = -1;</span><br><span class="line"></span><br><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">    count++;</span><br><span class="line">&#125;,5000); // 每个五秒，改变一下返回值</span><br><span class="line"></span><br><span class="line">app.listen(3000,() =&gt; &#123;</span><br><span class="line">    console.log(&apos;listen port 3000&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/&apos;,function (req, res) &#123;</span><br><span class="line">    res.sendfile(&apos;./view/test1.html&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/message&apos;,function (req, res) &#123;</span><br><span class="line">    const timer = setInterval(()=&gt;&#123;  </span><br><span class="line">        if(lastCount !== count)&#123;  // 数据发生改变的时候，才响应该请求</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">            lastCount = count;</span><br><span class="line">            res.end(count.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,1000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;缺点：这种方式可以避免不必要的网络传输，但是hold住的请求，对服务器也是一种资源对浪费。</p>
+<h1 id="三、http-stream"><a href="#三、http-stream" class="headerlink" title="三、http-stream"></a>三、http-stream</h1><h2 id="基本原理-2"><a href="#基本原理-2" class="headerlink" title="基本原理"></a>基本原理</h2><p>&emsp;&emsp;客户端在一次请求中保持和服务端连接不断开，然后服务端源源不断传送数据给客户端，就好比数据流一样，并不是一次性将数据全部发给客户端。它与轮询方式的区别在于整个通信过程客户端只发送一次请求，然后服务端保持与客户端的长连接，并利用这个连接在回送数据给客户端。</p>
+<p><img src="/images/9.jpg" alt=""></p>
+<h2 id="实现方式一"><a href="#实现方式一" class="headerlink" title="实现方式一"></a>实现方式一</h2><p>&emsp;&emsp;xhr-stream：这种方式的思想是构造一个XHR对象，通过监听它的onreadystatechange事件，当它的readyState为3的时候，获取它的responseText然后进行处理，readyState为3表示数据传送中，整个通信过程还没有结束，所以它还在不断获取服务端发送过来的数据，直到readyState为4的时候才表示数据发送完毕，一次通信过程结束。在这个过程中，服务端传给客户端的数据是分多次以stream的形式发送给客户端，客户端也是通过stream形式来获取的，所以称作http-streaming数据流方式。</p>
+<p>&emsp;&emsp;示列：</p>
+<p>客户端代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function getMsg() &#123;</span><br><span class="line">    var xhr = new XMLHttpRequest();</span><br><span class="line">    xhr.open(&apos;get&apos;, &apos;/message&apos;);</span><br><span class="line">    xhr.onreadystatechange = function () &#123;</span><br><span class="line">        if((xhr.status === 200 || xhr.status === 304) &amp;&amp; xhr.readyState === 4) &#123;</span><br><span class="line">            document.body.innerHTML = xhr.responseText;</span><br><span class="line">        &#125;</span><br><span class="line">        if(xhr.readyState === 3) &#123;</span><br><span class="line">            document.body.innerHTML = xhr.responseText;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    xhr.send(&apos;&apos;);</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(getMsg(), 1000);</span><br></pre></td></tr></table></figure>
+<p>服务端代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const app = new express();</span><br><span class="line">app.use(express.static(&apos;./&apos;));</span><br><span class="line">let num = -1;</span><br><span class="line">let currNum = null;</span><br><span class="line">setInterval(() =&gt; &#123;</span><br><span class="line">    num++;</span><br><span class="line">    console.log(num);</span><br><span class="line">&#125;, 3000)</span><br><span class="line">app.get(&apos;/&apos;, (req, res) =&gt; &#123;</span><br><span class="line">    res.sendFile(&apos;./index.html&apos;);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/message&apos;, (req, res) =&gt; &#123;</span><br><span class="line">    res.header(&apos;content-type&apos;, &apos;multipart/octet-stream&apos;);</span><br><span class="line">    setInterval(() =&gt; &#123;</span><br><span class="line">        if(num !== currNum) &#123;</span><br><span class="line">            res.write(num.toString());</span><br><span class="line">            currNum = num;</span><br><span class="line">        &#125;</span><br><span class="line">        if(num &gt; 9) &#123;</span><br><span class="line">            res.end();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,1000);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(8081, ()=&gt;&#123;</span><br><span class="line">   console.log(&apos;app running at http://localhost:8081&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现方式二："><a href="#实现方式二：" class="headerlink" title="实现方式二："></a>实现方式二：</h2><p>&emsp;&emsp;iframe-streaming：由于低版本的IE不允许在XHR的readyState为3的时候获取其responseText属性，为了达到在IE上使用这个技术，又出现了基于iframe的数据流通信方式。具体来讲，就是在浏览器中动态载入一个iframe,让它的src属性指向请求的服务器的URL，实际上就是向服务器发送了一个http请求，然后在浏览器端创建一个处理数据的函数，在服务端通过iframe与浏览器的长连接定时输出数据给客户端，但是这个返回的数据并不是一般的数据，而是一个类似于脚本执行的方式，浏览器接收到这个数据就会将它解析成js代码并找到页面上指定的函数去执行，实际上是服务端间接使用自己的数据间接调用了客户端的代码，达到实时更新客户端的目的。</p>
+<p>客户端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;data&quot;&gt;div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function process(text) &#123;</span><br><span class="line">        document.getElementById(&apos;data&apos;).innerText = text;</span><br><span class="line">    &#125;</span><br><span class="line">    function getMsg() &#123;</span><br><span class="line">        let ifr = document.createElement(&apos;iframe&apos;);</span><br><span class="line">        ifr.src = &apos;//localhost:3000/message&apos;;</span><br><span class="line">        ifr.style.display = &apos;none&apos;;</span><br><span class="line">        document.body.appendChild(ifr);</span><br><span class="line">    &#125;</span><br><span class="line">    setTimeout(getMsg(), 1000);</span><br><span class="line">script&gt;</span><br></pre></td></tr></table></figure>
+<p>服务端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">let app = new express();</span><br><span class="line">app.use(express.static(&apos;./&apos;));</span><br><span class="line">let num = 0;</span><br><span class="line">let currNum = null;</span><br><span class="line">const timer1 = setInterval(() =&gt; &#123;</span><br><span class="line">    num++;</span><br><span class="line">    console.log(num);</span><br><span class="line">&#125;, 3000)</span><br><span class="line">app.listen(3000,() =&gt; &#123;</span><br><span class="line">    console.log(&apos;listen port 3000&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/&apos;,function (req, res) &#123;</span><br><span class="line">    res.sendfile(&apos;./index.html&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/message&apos;,function (req, res) &#123;</span><br><span class="line">    num = 0;</span><br><span class="line">    const timer = setInterval(() =&gt; &#123;</span><br><span class="line"></span><br><span class="line">        if(num !== currNum) &#123;</span><br><span class="line">            res.write(</span><br><span class="line">                &apos;&apos;</span><br><span class="line">            );</span><br><span class="line">            currNum = num;</span><br><span class="line">        &#125;</span><br><span class="line">        if(num &gt; 9) &#123;</span><br><span class="line">            clearInterval(timer1);</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">            res.end();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,1000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="四、SSE技术"><a href="#四、SSE技术" class="headerlink" title="四、SSE技术"></a>四、SSE技术</h1><p>&emsp;&emsp;Server-sent Events 规范是 HTML 5 规范的一个组成部分。该规范比较简单，主要由两个部分组成：第一个部分是服务器端与浏览器端之间的通讯协议，第二部分则是在浏览器端可供 JavaScript 使用的 EventSource 对象。</p>
+<p>&emsp;&emsp;它的原理是在客户端构造一个eventSource对象，该对象具有readySate属性，分别表示如下：</p>
+<p>&emsp;&emsp;0：正在连接到服务器；</p>
+<p>&emsp;&emsp;1：打开了连接；</p>
+<p>&emsp;&emsp;2：关闭了连接。</p>
+<p>&emsp;&emsp;同时eventSource对象会保持与服务器的长连接，断开后会自动重连，如果要强制连接可以调用它的close方法。可以它的监听onmessage事件，服务端遵循SSE数据传输的格式给客户端，客户端在onmessage事件触发时就能够接收到数据，从而进行某种处理。</p>
+<p><img src="/images/10.jpg" alt=""></p>
+<p>客户端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let sse = new EventSource(&apos;//localhost:3000/message&apos;);</span><br><span class="line">sse.onopen = function () &#123;</span><br><span class="line">    console.log(&apos;connect&apos;);</span><br><span class="line">&#125;</span><br><span class="line">sse.onerror = function (err) &#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">&#125;</span><br><span class="line">sse.addEventListener(&apos;message&apos;, function(e) &#123;</span><br><span class="line">    document.body.innerHTML = e.data;</span><br><span class="line">&#125;, false);</span><br></pre></td></tr></table></figure>
+<p>服务端：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">let app = new express();</span><br><span class="line">app.use(express.static(&apos;./&apos;));</span><br><span class="line">let num = 0;</span><br><span class="line">let currNum = null;</span><br><span class="line">const timer1 = setInterval(() =&gt; &#123;</span><br><span class="line">    num++;</span><br><span class="line">    console.log(num);</span><br><span class="line">&#125;, 3000)</span><br><span class="line">app.listen(3000,() =&gt; &#123;</span><br><span class="line">    console.log(&apos;listen port 3000&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/&apos;,function (req, res) &#123;</span><br><span class="line">    res.sendfile(&apos;./index.html&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(&apos;/message&apos;,function (req, res) &#123;</span><br><span class="line">    res.header(&apos;content-type&apos;, &apos;text/event-stream&apos;);</span><br><span class="line">    const timer = setInterval(() =&gt; &#123;</span><br><span class="line">        if(num !== currNum) &#123;</span><br><span class="line">            res.write(&apos;data: &apos; + num.toString() + &apos;\n\n&apos;);</span><br><span class="line">            currNum = num;</span><br><span class="line">        &#125;</span><br><span class="line">        if(num &gt; 9) &#123;</span><br><span class="line">            clearInterval(timer1);</span><br><span class="line">            clearInterval(timer);</span><br><span class="line">            res.end();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,1000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/11.jpg" alt=""></p>
+<h1 id="五、Websocket通信"><a href="#五、Websocket通信" class="headerlink" title="五、Websocket通信"></a>五、Websocket通信</h1><p>&emsp;&emsp;websocke是一种应用层协议，客户端和服务端建立连接，随后两边可以随意发送数据。websocket协议是为了提供web应用程序和服务端全双工通信而专门制定的一种应用层协议，通常它表示为：ws://echo.websocket.org/?encoding=text HTTP/1.1，可以看到除了前面的协议名和http不同之外，它的表示地址就是传统的url地址。后面我会详细研究一下Websocket的相关细节。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/webpack之devtool的几种sourcemaps模式用法含义.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          webpack之devtool的几种sourcemaps模式用法含义
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="web通信技术及其实现方式" data-title="web通信技术及其实现方式" data-url="http://yoursite.com/articles/web通信技术及其实现方式.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="web通信技术及其实现方式">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

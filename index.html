@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
 					</div>
 				</section>
 				
@@ -173,11 +173,73 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑.html" class="article-date">
+  	<time datetime="2018-11-04T16:47:35.000Z" itemprop="datePublished">2018-11-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑.html">
+        记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> &emsp;&emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。<br>一开始，我本以为是个很简单的任务，找一个空闲的时间，就开始做这个模块替换的事儿了。在github上找到了ioredis和koa-session，随便读了一下文档，撸起袖子就开始干；然而，事情并没有我想象的那么简单。<br>
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-用sourcemap文件对线上压缩代码定位错误" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/articles/用sourcemap文件对线上压缩代码定位错误.html" class="article-date">
-  	<time datetime="2019-07-15T10:06:37.000Z" itemprop="datePublished">2019-07-15</time>
+  	<time datetime="2018-10-14T10:09:02.000Z" itemprop="datePublished">2018-10-14</time>
 </a>
     </div>
   
@@ -202,13 +264,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在前面的文章中，有介绍source map文件的功能以及其不同配置选项的作用。webpack devTool配置选项控制是否生成，以及如何生成 source map。在开发环境中，当bundle文件执行出错当时候，浏览器如果打开了Enable JavaScript source maps功能（截图是chrome该功能当开关）<br>
+        <p>&emsp;&emsp;在前面的文章中，有介绍source map文件的功能以及其不同配置选项的作用。webpack devTool配置选项控制是否生成，以及如何生成 source map。在开发环境中，当bundle文件执行出错当时候，浏览器如果打开了Enable JavaScript source maps功能（截图是chrome该功能当开关）<br>
       
     </p></div>
     
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+	</div>
+
       
 
       
@@ -217,6 +283,130 @@
       
         <p class="article-more-link">
           <a href="/articles/用sourcemap文件对线上压缩代码定位错误.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-webpack之devtool的几种sourcemaps模式用法含义" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/webpack之devtool的几种sourcemaps模式用法含义.html" class="article-date">
+  	<time datetime="2018-09-20T14:24:23.000Z" itemprop="datePublished">2018-09-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/webpack之devtool的几种sourcemaps模式用法含义.html">
+        webpack之devtool的几种sourcemaps模式用法含义
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;One of the easiest performance wins you can gain for your website is to combine and compress your JavaScript and CSS files. But what happens when you need to debug the code within those compressed files? It can be a nightmare. Fear not however, there is a solution on the horizon and it goes by the name of source maps.<br>&emsp;&emsp;A source map provides a way of mapping code within a compressed file back to it’s original position in a source file. This means that – with the help of a bit of software – you can easily debug your applications even after your assets have been optimized. The Chrome and Firefox developer tools both ship with built-in support for source maps.<br>
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/webpack之devtool的几种sourcemaps模式用法含义.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-web通信技术及其实现方式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/web通信技术及其实现方式.html" class="article-date">
+  	<time datetime="2018-08-05T17:50:49.000Z" itemprop="datePublished">2018-08-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/web通信技术及其实现方式.html">
+        web通信技术及其实现方式
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;传统的Web数据更新，必须要刷新网页才能显示更新的内容。这是浏览器采用的是B/S架构，而B/S架构是基于HTTP协议的。HTTP协议的工作模式就是客户端向服务器发送一个请求，服务器收到请求后返回响应。所以这种工作模式是基于请求显示数据的。这样的工作方式有其自身的好处，但是也会导致很多问题。在Web应用越来越火的今天，经常会遇到需要服务器主动发送数据到客户端的需求，比如事件推送、Web聊天等。这些需求使用传统的Web数据更新工作模式是无法实现的，因此就需要一项新的技术：Web实时通信技术。<br>
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/web通信技术及其实现方式.html#more">more >></a>
         </p>
       
     

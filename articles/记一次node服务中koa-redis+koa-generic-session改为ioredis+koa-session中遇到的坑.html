@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑">
+<meta property="og:url" content="http://yoursite.com/articles/记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/6.jpg">
+<meta property="og:updated_time" content="2019-07-16T08:55:01.083Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，">
+<meta name="twitter:image" content="http://yoursite.com/images/6.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑.html" class="article-date">
+  	<time datetime="2018-11-04T16:47:35.000Z" itemprop="datePublished">2018-11-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> &emsp;&emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。<br>一开始，我本以为是个很简单的任务，找一个空闲的时间，就开始做这个模块替换的事儿了。在github上找到了ioredis和koa-session，随便读了一下文档，撸起袖子就开始干；然而，事情并没有我想象的那么简单。<br><a id="more"></a></p>
+<p> &emsp;&emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。<br> 一开始，我本以为是个很简单的任务，找一个空闲的时间，就开始做这个模块替换的事儿了。在github上找到了ioredis和koa-session，随便读了一下文档，撸起袖子就开始干；然而，事情并没有我想象的那么简单。</p>
+<h1 id="坑一："><a href="#坑一：" class="headerlink" title="坑一："></a>坑一：</h1><p>&emsp;&emsp;直接将两个模块替换之后，系统运行会抛出一个错误：大致意思就是说store对象缺少destroy方法。诶？奇怪了，明明都是按照官方文档做的，怎么会说没有destroy方法呢？去翻了一下两个模块的源码，果然里面没有destroy这个方法存在啊，到底哪里出了问题啊。百思不解，就去仔细阅读了两个模块的说明文档，果然发现了一个好东西。</p>
+<p><img src="/images/6.jpg" alt=""></p>
+<p>&emsp;&emsp;意思就是说，使用koa-session模块，session默认是存储在cookie中的，如果你想要把session存到redis或其他数据库中的话，你配置的store属性必须要有（自己实现）get，set，destory方法，而且都必须是异步函数。之前我是直接new ioredis(options)来使用的，这下真想大白，好，那就自己加上这几个方法，把ioredis重新封装一下然后再使用就可以了呗。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const Redis = require(&apos;ioredis&apos;);</span><br><span class="line">class RedisStore&#123;</span><br><span class="line">    constructor(config) &#123;</span><br><span class="line">        this.redis = new Redis(config);</span><br><span class="line">    &#125;</span><br><span class="line">    async get(key, maxAge, options) &#123;</span><br><span class="line">        let data = await this.redis.get(key);</span><br><span class="line">        return JSON.parse(data);</span><br><span class="line">    &#125;</span><br><span class="line">    async set(key, sess, maxAge, options) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            // Use redis set EX to automatically drop expired sessions</span><br><span class="line">            await this.redis.set(key, JSON.stringify(sess), &apos;EX&apos;, (maxAge / 1000) | 0);</span><br><span class="line">        &#125; catch (e) &#123;</span><br><span class="line">            console.log(&apos;redis set error:&apos;, e);</span><br><span class="line">        &#125;</span><br><span class="line">        return key;</span><br><span class="line">    &#125;</span><br><span class="line">    async destroy(key) &#123;</span><br><span class="line">        return await this.redis.del(key);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">module.exports = RedisStore;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;成功填完坑一。</p>
+<h1 id="坑二："><a href="#坑二：" class="headerlink" title="坑二："></a>坑二：</h1><p>&emsp;&emsp;完成上面的工作之后，组件也基本上就算是完成替换了，系统也能正常跑起来。但是自己在测试升级发布的时候，发现一个问题，那就是替换完这两个模块发布之后，之前的登陆态会全部丢失，咱们调试过程中可能无所谓，但是生产环境上面的用户可不能不考虑他们的感受啊。总不能发布之后，让他们全部都重新登陆吧（其实这也是一个可选的方案，选择夜深人静系统使用率比较低的时候发布）。不过，为了更好的用户体验，还是考虑一下能不能升级之后，兼容之前的登陆态。<br>&emsp;&emsp;考虑一下，我们的登陆信息都是存在redis中的，而redis中都是简单的键值对存储的内容，升级之后就取不到登陆信息了。只有一个原因，key值不对，所以在redis中找不到之前的登陆信息。为了验证这个猜想的正确性，我先是跑了一边测试流程，果然升级之后，之前登陆用户得到的key是不同的，然后看了一下模块中的源码。结论就是–koa-generic-session生成key的规则是uid2(24)，而在redis中的存取都会加上自己配置的前缀prefix；而koa-session中生成key的规则是prefix+时间戳+uid2(24)，取的时候不做任何处理。<br>这下要做兼容也就比较容易了，在取值的地方，给老的登陆信息主动加上前缀之前配置的前缀就可以了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">async get(key, maxAge, options) &#123;</span><br><span class="line">    if(key &amp;&amp; key.indexOf(&apos;aaa:sess:&apos;) &lt; 0) &#123;</span><br><span class="line">        key = &apos;aaa:sess:&apos; + key;</span><br><span class="line">    &#125;</span><br><span class="line">    let data = await this.redis.get(key);</span><br><span class="line">    return JSON.parse(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;看似一个很简单的任务，却也花了我不少时间，记录一下。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/articles/用sourcemap文件对线上压缩代码定位错误.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用sourcemap文件对线上压缩代码定位错误</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑" data-title="记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑" data-url="http://yoursite.com/articles/记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
