@@ -11,19 +11,19 @@
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，">
+  <meta name="description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，我">
 <meta name="keywords" content="node">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑">
 <meta property="og:url" content="http://yoursite.com/articles/记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑.html">
 <meta property="og:site_name" content="johnny的12维空间">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，我">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/6.jpg">
-<meta property="og:updated_time" content="2019-07-16T08:55:01.083Z">
+<meta property="og:updated_time" content="2019-07-17T02:50:39.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。一开始，我">
 <meta name="twitter:image" content="http://yoursite.com/images/6.jpg">
   
     <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a>
 					</div>
 				</section>
 				
@@ -213,8 +213,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> &emsp;&emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。<br>一开始，我本以为是个很简单的任务，找一个空闲的时间，就开始做这个模块替换的事儿了。在github上找到了ioredis和koa-session，随便读了一下文档，撸起袖子就开始干；然而，事情并没有我想象的那么简单。<br><a id="more"></a></p>
-<p> &emsp;&emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。<br> 一开始，我本以为是个很简单的任务，找一个空闲的时间，就开始做这个模块替换的事儿了。在github上找到了ioredis和koa-session，随便读了一下文档，撸起袖子就开始干；然而，事情并没有我想象的那么简单。</p>
+        <p>&emsp;&emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。<br>一开始，我本以为是个很简单的任务，找一个空闲的时间，就开始做这个模块替换的事儿了。在github上找到了ioredis和koa-session，随便读了一下文档，撸起袖子就开始干；然而，事情并没有我想象的那么简单。<br><a id="more"></a></p>
 <h1 id="坑一："><a href="#坑一：" class="headerlink" title="坑一："></a>坑一：</h1><p>&emsp;&emsp;直接将两个模块替换之后，系统运行会抛出一个错误：大致意思就是说store对象缺少destroy方法。诶？奇怪了，明明都是按照官方文档做的，怎么会说没有destroy方法呢？去翻了一下两个模块的源码，果然里面没有destroy这个方法存在啊，到底哪里出了问题啊。百思不解，就去仔细阅读了两个模块的说明文档，果然发现了一个好东西。</p>
 <p><img src="/images/6.jpg" alt=""></p>
 <p>&emsp;&emsp;意思就是说，使用koa-session模块，session默认是存储在cookie中的，如果你想要把session存到redis或其他数据库中的话，你配置的store属性必须要有（自己实现）get，set，destory方法，而且都必须是异步函数。之前我是直接new ioredis(options)来使用的，这下真想大白，好，那就自己加上这几个方法，把ioredis重新封装一下然后再使用就可以了呗。</p>

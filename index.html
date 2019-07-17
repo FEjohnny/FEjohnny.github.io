@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webpack/" style="font-size: 20px;">webpack</a>
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a>
 					</div>
 				</section>
 				
@@ -202,7 +202,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> &emsp;&emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。<br>一开始，我本以为是个很简单的任务，找一个空闲的时间，就开始做这个模块替换的事儿了。在github上找到了ioredis和koa-session，随便读了一下文档，撸起袖子就开始干；然而，事情并没有我想象的那么简单。<br>
+        <p>&emsp;&emsp;在node项目中，我们之前koa-generic-session模块来存储用户信息和登录状态等信息，并且用koa-redis模块来进行登陆状态的持久化，将登陆信息存储在redis中。最近在工作中收到一个前端组的任务，需要对node项目中koa-redis + koa-generic-session的模块进行替换，全部改为使用ioredis+koa-session。<br>一开始，我本以为是个很简单的任务，找一个空闲的时间，就开始做这个模块替换的事儿了。在github上找到了ioredis和koa-session，随便读了一下文档，撸起袖子就开始干；然而，事情并没有我想象的那么简单。<br>
       
     </p></div>
     
@@ -264,7 +264,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&emsp;&emsp;在前面的文章中，有介绍source map文件的功能以及其不同配置选项的作用。webpack devTool配置选项控制是否生成，以及如何生成 source map。在开发环境中，当bundle文件执行出错当时候，浏览器如果打开了Enable JavaScript source maps功能（截图是chrome该功能当开关）<br>
+        <h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>&emsp;&emsp;在前面的文章中，有介绍source map文件的功能以及其不同配置选项的作用。webpack devTool配置选项控制是否生成，以及如何生成 source map。在开发环境中，当bundle文件执行出错当时候，浏览器如果打开了Enable JavaScript source maps功能（截图是chrome该功能当开关）<br>
       
     </p></div>
     
@@ -326,7 +326,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&emsp;&emsp;One of the easiest performance wins you can gain for your website is to combine and compress your JavaScript and CSS files. But what happens when you need to debug the code within those compressed files? It can be a nightmare. Fear not however, there is a solution on the horizon and it goes by the name of source maps.<br>&emsp;&emsp;A source map provides a way of mapping code within a compressed file back to it’s original position in a source file. This means that – with the help of a bit of software – you can easily debug your applications even after your assets have been optimized. The Chrome and Firefox developer tools both ship with built-in support for source maps.<br>
+        <h1 id="为什么需要source-maps？"><a href="#为什么需要source-maps？" class="headerlink" title="为什么需要source maps？"></a>为什么需要source maps？</h1><p>&emsp;&emsp;One of the easiest performance wins you can gain for your website is to combine and compress your JavaScript and CSS files. But what happens when you need to debug the code within those compressed files? It can be a nightmare. Fear not however, there is a solution on the horizon and it goes by the name of source maps.<br>
       
     </p></div>
     
@@ -407,6 +407,396 @@
       
         <p class="article-more-link">
           <a href="/articles/web通信技术及其实现方式.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-深入理解http协议缓存机制" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/深入理解http协议缓存机制.html" class="article-date">
+  	<time datetime="2018-07-01T10:19:43.000Z" itemprop="datePublished">2018-07-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/深入理解http协议缓存机制.html">
+        深入理解http协议缓存机制
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;缓存分为服务端缓存（比如nginx，apache）和客户端缓存（比如浏览器缓存）。服务端缓存又分为代理服务器缓存和反向代理服务器缓存（也叫网关缓存，像nginx反向代理等），我们平时广泛使用的CND就是一种服务端缓存，一般缓存的都是一些静态资源，比如js，css，images等，它的内容分发和缓存可以使客户端访问资源时走捷径，达到加速的目地；而客户端缓存一般指浏览器缓存，目地也是加速资源的访问。<br>
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/深入理解http协议缓存机制.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-PWA技术之推送通知" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/PWA技术之推送通知.html" class="article-date">
+  	<time datetime="2018-06-24T14:07:17.000Z" itemprop="datePublished">2018-06-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/PWA技术之推送通知.html">
+        PWA技术之推送通知
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;消息推送，特别是离线消息推送，一直以来都是native专有到东西，而且有着广泛到应用场景：</p>
+<pre><code>1. 新品上架，推送消息给用户，点击即进入商品详情页面。
+
+2. 用户很久没有使用过应用，推送消息给用户，告知我们应用的更新。
+
+3. 像天气应用，可以在恶劣气候到来之前，推送消息给用户，让其知晓。
+
+4. 在用户没有登陆应用的时候，推送收到的最新消息给用户。
+
+.......
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/PWA技术之推送通知.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-PWA技术之添加到主屏" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/PWA技术之添加到主屏.html" class="article-date">
+  	<time datetime="2018-06-09T09:15:28.000Z" itemprop="datePublished">2018-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/PWA技术之添加到主屏.html">
+        PWA技术之添加到主屏
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-添加到主屏幕"><a href="#一-添加到主屏幕" class="headerlink" title="一. 添加到主屏幕"></a>一. 添加到主屏幕</h1><p>&emsp;&emsp;允许将站点添加至主屏幕，是 PWA 提供的一项重要功能。虽然目前部分浏览器已经支持向主屏幕添加网页快捷方式以方便用户快速打开站点，但是 PWA 添加到主屏幕的不仅仅是一个网页快捷方式，它将提供更多的功能，让 PWA 具有更加原生的体验。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/PWA技术之添加到主屏.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-PWA技术之service workers" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/PWA技术之service workers.html" class="article-date">
+  	<time datetime="2018-06-09T07:41:04.000Z" itemprop="datePublished">2018-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/PWA技术之service workers.html">
+        PWA技术之service workers
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h1><p>&emsp;&emsp;Service Workers是PWA的关键。我觉得它最主要的一个功能就是：使你可以不通过网络连接来访问资源。它是一个运行于后台的js脚本，只需短短几行代码，即可完成拦截网络请求，处理推送消息和并行执行任务等任务。如果当前客户端不支持service workers，它们只是简单的回退，应用程序就作为一个普通的应用程序来运行，这也就是Progressive（渐进增强）的由来；也就是指，你完全可以先创建一个在任何地方运行的应用，然后为支持高级功能的设备增强体验。</p>
+<p>&emsp;&emsp;如何理解service workers？来看Google 的 Jeff Posnick 是如何描述他们的：“将你的网络请求想象成飞机起飞。Service Worker 是路由请求的空中交通管制员。它可以通过网络加载，或甚至通过缓存加载。（甚至可以重定向加载）”。也就是说，Service Workers 能够拦截进出的 HTTP 请求，从而完全控制你的网站。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/PWA技术之service workers.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-什么是PWA" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/什么是PWA.html" class="article-date">
+  	<time datetime="2018-06-09T05:01:37.000Z" itemprop="datePublished">2018-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/什么是PWA.html">
+        什么是PWA
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-什么是PWA"><a href="#一-什么是PWA" class="headerlink" title="一.什么是PWA"></a>一.什么是PWA</h1><p>&emsp;&emsp;Progressive Web App, 简称 PWA，是提升 Web App 的体验的一种新方法，能给用户原生应用的体验。</p>
+<p>&emsp;&emsp;PWA 能做到原生应用的体验不是靠特指某一项技术，而是经过应用一些新技术进行改进，在安全、性能和体验三个方面都有很大提升，PWA 本质上是 Web App，借助一些新技术也具备了 Native App 的一些特性，兼具 Web App 和 Native App 的优点。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/什么是PWA.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-http状态码和首部字段详解" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/http状态码和首部字段详解.html" class="article-date">
+  	<time datetime="2018-05-22T13:06:42.000Z" itemprop="datePublished">2018-05-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/http状态码和首部字段详解.html">
+        http状态码和首部字段详解
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;http：HyperText Transfer Protocol 超文本传输协议</p>
+<p>&emsp;&emsp;诞生背景：1990年问世</p>
+<h3 id="tcp-ip按层次分别分为4层："><a href="#tcp-ip按层次分别分为4层：" class="headerlink" title="tcp/ip按层次分别分为4层："></a>tcp/ip按层次分别分为4层：</h3><pre><code>应用层：决定向用户提供应用服务时通信的活动。http也处于该层。
+传输层：对上层的应用层，提供处于网络链接中两台计算机之间的数据传输。有tcp（传输控制协议）和udp（用户数据报协议）。
+网络层：用来处理在网络上流动的数据包，该层规定了通过怎样的路径（传输路线）到达对方计算机，并把数据包传送给对方，与对方计算机之间通过多太计算机或网络设备进行传输时，网络层所起的作用就是在众多的选项内选择一条传输路线。
+链路层：又名数据链路层/网络接口层，用来处理链接网络的硬件部分，硬件上的范畴均在链路层的作用范围之内。
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/http状态码和首部字段详解.html#more">more >></a>
         </p>
       
     
