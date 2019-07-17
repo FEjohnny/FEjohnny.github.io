@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. js replace（）方法用法详解。str.replace(replaceString,replacement)：第一个参数为需要替换的字符串，第二个参数是替换的内容，返回替换完成之后的字符串。  str.replace(RegExp，replacement)：第一个参数为正则匹配表达式，第二个参数为替换的内容。  replacement还可以是一个函数，函数有三个变量可选（a,b,c），">
+<meta name="keywords" content="javascript,技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性">
+<meta property="og:url" content="http://yoursite.com/articles/js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="1. js replace（）方法用法详解。str.replace(replaceString,replacement)：第一个参数为需要替换的字符串，第二个参数是替换的内容，返回替换完成之后的字符串。  str.replace(RegExp，replacement)：第一个参数为正则匹配表达式，第二个参数为替换的内容。  replacement还可以是一个函数，函数有三个变量可选（a,b,c），">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/21.png">
+<meta property="og:updated_time" content="2019-07-17T06:30:33.348Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性">
+<meta name="twitter:description" content="1. js replace（）方法用法详解。str.replace(replaceString,replacement)：第一个参数为需要替换的字符串，第二个参数是替换的内容，返回替换完成之后的字符串。  str.replace(RegExp，replacement)：第一个参数为正则匹配表达式，第二个参数为替换的内容。  replacement还可以是一个函数，函数有三个变量可选（a,b,c），">
+<meta name="twitter:image" content="http://yoursite.com/images/21.png">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性.html" class="article-date">
+  	<time datetime="2018-05-14T21:41:22.000Z" itemprop="datePublished">2018-05-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技巧/">技巧</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-js-replace（）方法用法详解。"><a href="#1-js-replace（）方法用法详解。" class="headerlink" title="1. js replace（）方法用法详解。"></a>1. js replace（）方法用法详解。</h1><pre><code>str.replace(replaceString,replacement)：第一个参数为需要替换的字符串，第二个参数是替换的内容，返回替换完成之后的字符串。
+
+str.replace(RegExp，replacement)：第一个参数为正则匹配表达式，第二个参数为替换的内容。
+
+replacement还可以是一个函数，函数有三个变量可选（a,b,c），a是匹配到的字符串，b是匹配到的字符串下标开始位置，c是字符串str本身。函数的返回值作为替换内容。
+</code></pre><a id="more"></a>
+<h1 id="2-用css画三角形。"><a href="#2-用css画三角形。" class="headerlink" title="2. 用css画三角形。"></a>2. 用css画三角形。</h1><p><img src="/images/21.png" alt=""></p>
+<h1 id="3-css3-filter用法。"><a href="#3-css3-filter用法。" class="headerlink" title="3. css3 filter用法。"></a>3. css3 filter用法。</h1><p>CSS滤镜（filter）属提供的图形特效，像模糊，锐化或元素变色。过滤器通常被用于调整图片，背景和边界的渲染。可接受参数：</p>
+<pre><code>filter:url(),URL函数接受一个XML文件，该文件设置了 一个SVG滤镜，且可以包含一个锚点来指定一个具体的滤镜元素.
+
+filter:blur(),给图像设置高斯模糊。“radius”一值设定高斯函数的标准差，或者是屏幕上以多少像素融在一起，所以值越大越模糊；如果没有设定值，则默认是0；这个参数可设置css长度值，但不接受百分比值。
+
+filter:brightness(),给图片应用一种线性乘法，使其看起来更亮或更暗。如果值是0%，图像会全黑。值是100%，则图像无变化。其他的值对应线性乘数效果。值超过100%也是可以的，图像会比原来更亮。如果没有设定值，默认是1。
+
+filter:contrast(),调整图像的对比度。值是0%的话，图像会全黑。值是100%，图像不变。值可以超过100%，意味着会运用更低的对比。若没有设置值，默认是1。
+
+filter:drop-shadow(),给图像设置一个阴影效果。
+
+filter:grayscale(),将图像转换为灰度图像。
+
+filter:hue-rotate(),给图像应用色相旋转。“angle”一值设定图像会被调整的色环角度值。值为0deg，则图像无变化。若值未设置，默认值是0deg。该值虽然没有最大值，超过360deg的值相当于又绕一圈。
+
+filter:invert(),反转输入图像。值定义转换的比例。100%的价值是完全反转。值为0%则图像无变化。值在0%和100%之间，则是效果的线性乘子。 若值未设置，值默认是0。
+
+filter:opacity(),转化图像的透明程度。值定义转换的比例。值为0%则是完全透明，值为100%则图像无变化。值在0%和100%之间，则是效果的线性乘子，也相当于图像样本乘以数量。 若值未设置，值默认是1。该函数与已有的opacity属性很相似，不同之处在于通过filter，一些浏览器为了提升性能会提供硬件加速。
+
+filter:saturate(),转换图像饱和度。值定义转换的比例。值为0%则是完全不饱和，值为100%则图像无变化。其他值，则是效果的线性乘子。超过100%的值是允许的，则有更高的饱和度。 若值未设置，值默认是1。
+
+filter:sepia(),将图像转换为深褐色。值定义转换的比例。值为100%则完全是深褐色的，值为0%图像无变化。值在0%到100%之间，则是效果的线性乘子。若未设置，值默认是0。
+
+filter: contrast(175%) brightness(3%),复合函数,你可以组合任意数量的函数来控制渲染。
+</code></pre><h1 id="4-css浮动的特性："><a href="#4-css浮动的特性：" class="headerlink" title="4. css浮动的特性："></a>4. css浮动的特性：</h1><pre><code>浮动的元素不像absolute定位那样，它并没有脱离正常的文档流，仍然占据正常文档流控件。其他元素将会围绕浮动的元素排列，浮动的元素就会占据着它们的背景和border，一旦超出了浮动的影响范围，围绕着的元素将会恢复正常的行宽。
+
+浮动的元素虽然还在父容器的区域内排列，但它不会撑起父容器的高度，父容器的高度跟没有子元素一样都是0px。浮动的出现是为了解决图片环绕文字的问题。
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/Promise初探.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          Promise初探
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/vue如何引入js库，vue插件编写，canvas相关.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue如何引入js库，vue插件编写，canvas相关</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性" data-title="js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性" data-url="http://yoursite.com/articles/js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

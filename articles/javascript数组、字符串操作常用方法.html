@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-javascript数组、字符串操作常用方法 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="字符串操作1.字符串转换：19.toString()或者19+“”。  2.字符串分割（返回数组形式）：split（&amp;quot;,&amp;quot;,length），接收连个参数：分割符，返回的数组长度。  3.获取字符串长度：str.length。  4.查询字符串：      str.indexOf(&amp;quot;abc&amp;quot;)：从头开始，找到则返回对应下表，有多个匹配则返回最后一个的下标，可接">
+<meta name="keywords" content="javascript,数组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript数组、字符串操作常用方法">
+<meta property="og:url" content="http://yoursite.com/articles/javascript数组、字符串操作常用方法.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="字符串操作1.字符串转换：19.toString()或者19+“”。  2.字符串分割（返回数组形式）：split（&amp;quot;,&amp;quot;,length），接收连个参数：分割符，返回的数组长度。  3.获取字符串长度：str.length。  4.查询字符串：      str.indexOf(&amp;quot;abc&amp;quot;)：从头开始，找到则返回对应下表，有多个匹配则返回最后一个的下标，可接">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-17T09:25:24.014Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript数组、字符串操作常用方法">
+<meta name="twitter:description" content="字符串操作1.字符串转换：19.toString()或者19+“”。  2.字符串分割（返回数组形式）：split（&amp;quot;,&amp;quot;,length），接收连个参数：分割符，返回的数组长度。  3.获取字符串长度：str.length。  4.查询字符串：      str.indexOf(&amp;quot;abc&amp;quot;)：从头开始，找到则返回对应下表，有多个匹配则返回最后一个的下标，可接">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-javascript数组、字符串操作常用方法" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/javascript数组、字符串操作常用方法.html" class="article-date">
+  	<time datetime="2017-03-08T09:16:37.000Z" itemprop="datePublished">2017-03-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript数组、字符串操作常用方法
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><pre><code>1.字符串转换：19.toString()或者19+“”。
+
+2.字符串分割（返回数组形式）：split（&quot;,&quot;,length），接收连个参数：分割符，返回的数组长度。
+
+3.获取字符串长度：str.length。
+
+4.查询字符串：
+
+    str.indexOf(&quot;abc&quot;)：从头开始，找到则返回对应下表，有多个匹配则返回最后一个的下标，可接收第二个可选参数，表示开始查询的位置。
+
+    str.lastIndexOf(&apos;abc&apos;)：从末尾开始查找，找到则返回对应下表，有多个匹配则返回最后一个的下标，可接收第二个可选参数，表示开始查询的位置。
+</code></pre><a id="more"></a>
+<pre><code>5.字符串替换：str.replace(&quot;love&quot;,&quot;hate&quot;)：默认只替换第一次查询到的，要想全局替换，可改加上/g，str.replace(&quot;love/g&quot;,&quot;hate&quot;)。
+
+6.查找给定位置的字符：
+
+      str.charAt(2)：从0小标开始查找,返回找到的字符。
+
+      str.charCodeAt(2):从0小标开始查找,返回找到的字符的表码值。
+
+7.字符串连接：
+
+    ‘+’：‘asd’+&apos;dksdj&apos;。
+
+    concat函数：‘asd’ . concat (&apos;dksdj&apos;);可接收多个字符串，’如：‘a’ . concat ( &apos;b&apos; , &apos;c&apos; , &apos;d&apos; ）。
+
+8.字符串切割和提取：
+
+    str.slice(1,4)：表示截取从第一个到第三个的字符串，‘abcd’.slice(1,4) = &apos;bcd&apos; 。     
+
+    str.substring(1,4)：结果和slice相同。
+
+    str.substr(1.4)：第一个参数表示开始位置，第二个参数表示截取长度，&apos;abcde&apos;.substr(1,4)=&apos;bcde&apos;。
+
+9.字符串大小写转换：
+
+    str.toLowerCase()转换为小写，str.toUpperCase()转换为大写。
+
+10.字符串匹配：
+
+    math()：&apos;abcd&apos;.math(/b/)-&gt;返回[&apos;b&apos;]。再者var str=&apos;abcd&apos;.math(/b/); str.index=1; str.input=&apos;abcd&apos;。
+
+    exec()：/b/.exec(&apos;abcd&apos;)-&gt;返回[&apos;b&apos;]。再者var str=/b/.exec(&apos;abcd&apos;); str.index=1; str.input=&apos;abcd&apos;。
+
+以上连个函数，如果匹配失败，则返回null。
+
+11.字符串比较：
+
+    str.localeCompare(str1)：以本地特定的顺序进行比较，结果类似于str - str1，大于则返回1，小于返回-1，相等返回0。
+</code></pre><h1 id="数组操作："><a href="#数组操作：" class="headerlink" title="数组操作："></a>数组操作：</h1><pre><code>1.如何创建数组：new Array()，new Array(2)已知长度时，new Array(1,2, 3)已知数组元素时，var arr=[1,2,3]使用数组字面量表示法创建。
+
+2.数组操作方法：
+
+    push()：arr.push()，往数组后面添加元素，可接收多个参数。
+
+    pop()：arr.pop()，返回数组的最后一个元素，没有参数。
+
+    unshift()：arr.unshift(),往数组前面添加元素，可接收多个参数。
+
+    shift()：arr.shift()，返回数组的第一个元素，没有参数。
+
+3.检测验证数组：
+
+    arr instanceof Array。
+
+    Array.isArray(arr)。//该方法只使用与高版本的浏览器：IE9+、Firefox4+/Chrome
+
+4.slice(start,end)：arr.slice(0,5)返回一个新的数组,第一个参数必须，第二个不传则默认到最后一个。
+
+5.concat(item)：arr.concat(item)，把item添加到arr后面，返回一个新的数组
+
+6.splice()：向/从数组中添加/删除元素，然后返回被删除的项目（该方法会改变原始数组）。
+
+    arr.splice(index,number,item1,item2...itemx),前两个参数必须。
+
+    [1,2,3,4,5].splice(2,1,6);//[3]，原数组变为[1,2,6,4,5]
+
+7.concat()：arr.concat(item1,item2,...itemx)，item传入值或者数组都行，该方法相当于合并数组，返回一个新的数组，不会改变原来的数组。
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/jquery学习之目录.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          jquery学习之目录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/javascirpt之正则表达式.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascirpt之正则表达式</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="javascript数组、字符串操作常用方法" data-title="javascript数组、字符串操作常用方法" data-url="http://yoursite.com/articles/javascript数组、字符串操作常用方法.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="javascript数组、字符串操作常用方法">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

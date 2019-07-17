@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-javascript设计模式之Coustructor(构造器)模式 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp; 在经典面向对象编程语言中，Coustructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。而在javascript中，几乎所有东西都是对象，通常我们最感兴趣的的object构造器；object构造器用于创建特定类型的对象，同时可以构造器接手参数以在第一次创建对西那个时设置成员属性和方法值。">
+<meta name="keywords" content="javascript,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript设计模式之Coustructor(构造器)模式">
+<meta property="og:url" content="http://yoursite.com/articles/javascript设计模式之Coustructor(构造器)模式.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="&amp;emsp;&amp;emsp; 在经典面向对象编程语言中，Coustructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。而在javascript中，几乎所有东西都是对象，通常我们最感兴趣的的object构造器；object构造器用于创建特定类型的对象，同时可以构造器接手参数以在第一次创建对西那个时设置成员属性和方法值。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/27.jpg">
+<meta property="og:updated_time" content="2019-07-17T07:46:18.923Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript设计模式之Coustructor(构造器)模式">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp; 在经典面向对象编程语言中，Coustructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。而在javascript中，几乎所有东西都是对象，通常我们最感兴趣的的object构造器；object构造器用于创建特定类型的对象，同时可以构造器接手参数以在第一次创建对西那个时设置成员属性和方法值。">
+<meta name="twitter:image" content="http://yoursite.com/images/27.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-javascript设计模式之Coustructor(构造器)模式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/javascript设计模式之Coustructor(构造器)模式.html" class="article-date">
+  	<time datetime="2018-09-02T09:11:45.000Z" itemprop="datePublished">2018-09-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript设计模式之Coustructor(构造器)模式
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp; 在经典面向对象编程语言中，Coustructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。而在javascript中，几乎所有东西都是对象，通常我们最感兴趣的的object构造器；object构造器用于创建特定类型的对象，同时可以构造器接手参数以在第一次创建对西那个时设置成员属性和方法值。</p>
+<a id="more"></a>
+<p>constructor(构造器)模式</p>
+<p><img src="/images/27.jpg" alt=""></p>
+<h1 id="一、对象创建"><a href="#一、对象创建" class="headerlink" title="一、对象创建"></a>一、对象创建</h1><p>javascript中创建对象的两种常用方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newObject = &#123;&#125;;   //采用自变量方式创建一个新的空对象</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newObect = new Object();   //object构造器的简洁方式</span><br></pre></td></tr></table></figure>
+<p>将键值赋给对象的四种方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ES3</span><br><span class="line">newObject.someKey = &apos;some value&apos;;  // 点号赋值</span><br><span class="line">newObject[someKey] = &apos;some value&apos;; // 中括号赋值</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ES5</span><br><span class="line">Object.defineproperty(newObject, &apos;someKey&apos;, &#123;  // 定义一个key值</span><br><span class="line">       value: &apos;some value&apos;,  // value值</span><br><span class="line">       writable: true,   // 是否可写</span><br><span class="line">       enumerable: true,  // 是否可枚举</span><br><span class="line">       configurable: true,  // 是否可配置</span><br><span class="line">&#125;);</span><br><span class="line">Object.definePropertyies(newObject, &#123; // 同时定义的多个key值</span><br><span class="line">       &quot;someKey&quot;: &#123;</span><br><span class="line">              value: &apos;some value&apos;,</span><br><span class="line">              writable: true</span><br><span class="line">       &#125;,</span><br><span class="line">       &quot;anotherKey&quot;: &#123;</span><br><span class="line">              value: &apos;some value&apos;,</span><br><span class="line">              writable: true</span><br><span class="line">       &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="二、基本Coustructor（构造器）"><a href="#二、基本Coustructor（构造器）" class="headerlink" title="二、基本Coustructor（构造器）"></a>二、基本Coustructor（构造器）</h1><p>&emsp;&emsp; 正如我们前面所看到的，javascript不支持类的概念，但它确实支持与对象一起用的特殊Coustructor函数。通过在构造器前面加new关键字，告诉javascript使用构造器实例化一个新对象，并且对象成员由该函数定义。在构造器内，关键字this指向该对象的引用。看下面这个列子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age) &#123;</span><br><span class="line">       this.name = name;</span><br><span class="line">       this.age = age;</span><br><span class="line">       this.speak = functino() &#123;</span><br><span class="line">              console.log(&apos;my name is: &apos; + this.name); </span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line">var me = new Person(&apos;chenjun&apos;, 17); </span><br><span class="line">var you = new Person(&apos;Guest&apos;, 18);</span><br><span class="line">me.speak();</span><br><span class="line">you.speak();</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp; 上面是一个简单构造器版本，但它确实存在一些问题。一个是它使继承变得困难，另一个是里面但speak方法，每new一个Person的实例的时候，都会新建一个speak方法，而它如果能在所有实例对象直接共享才是最好的。</p>
+<h1 id="三、带原型的Coustructor（构造器）"><a href="#三、带原型的Coustructor（构造器）" class="headerlink" title="三、带原型的Coustructor（构造器）"></a>三、带原型的Coustructor（构造器）</h1><p>javascript中又一个名为prototype的属性（注意，它是构造器的专有属性哦）。调用javascript构造器创建一个新对象后，新对象就会具有构造器原型的所有属性。通过这种方式，可以创建多个Person的实例对象，并访问相同的原型。请看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age) &#123;</span><br><span class="line">       this.name = name;</span><br><span class="line">       this.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.speak = functino() &#123;</span><br><span class="line">       console.log(&apos;my name is: &apos; + this.name); </span><br><span class="line">&#125;</span><br><span class="line">var me = new Person(&apos;chenjun&apos;, 17); </span><br><span class="line">var you = new Person(&apos;Guest&apos;, 18);</span><br><span class="line">me.speak();</span><br><span class="line">you.speak();</span><br></pre></td></tr></table></figure>
+<p> 现在speak的单一实例就能在多个Person的实例对象直接共享。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/webpack之devtool的几种sourcemaps模式用法含义.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          webpack之devtool的几种sourcemaps模式用法含义
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/我所经历过的前后端协作方式.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我所经历过的前后端协作方式</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="javascript设计模式之Coustructor(构造器)模式" data-title="javascript设计模式之Coustructor(构造器)模式" data-url="http://yoursite.com/articles/javascript设计模式之Coustructor(构造器)模式.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="javascript设计模式之Coustructor(构造器)模式">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

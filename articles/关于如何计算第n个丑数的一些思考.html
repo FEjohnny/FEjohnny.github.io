@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-关于如何计算第n个丑数的一些思考 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;如题：计算第N的丑数的值是多少。 &amp;emsp;&amp;emsp;丑数的定义：只包含因子2,3,5的正整数被称作丑数，比如4,10,12都是丑数，而7,23,111则不是丑数，另外1也是丑数。 &amp;emsp;&amp;emsp;说明：前10个丑数分别是：1， 2， 3， 4， 5， 6， 8， 9， 10， 12。 &amp;emsp;&amp;emsp;例如： 输入n=10，输出12。">
+<meta name="keywords" content="javascript,letcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于如何计算第n个丑数的一些思考">
+<meta property="og:url" content="http://yoursite.com/articles/关于如何计算第n个丑数的一些思考.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;如题：计算第N的丑数的值是多少。 &amp;emsp;&amp;emsp;丑数的定义：只包含因子2,3,5的正整数被称作丑数，比如4,10,12都是丑数，而7,23,111则不是丑数，另外1也是丑数。 &amp;emsp;&amp;emsp;说明：前10个丑数分别是：1， 2， 3， 4， 5， 6， 8， 9， 10， 12。 &amp;emsp;&amp;emsp;例如： 输入n=10，输出12。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-17T07:55:13.858Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于如何计算第n个丑数的一些思考">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;如题：计算第N的丑数的值是多少。 &amp;emsp;&amp;emsp;丑数的定义：只包含因子2,3,5的正整数被称作丑数，比如4,10,12都是丑数，而7,23,111则不是丑数，另外1也是丑数。 &amp;emsp;&amp;emsp;说明：前10个丑数分别是：1， 2， 3， 4， 5， 6， 8， 9， 10， 12。 &amp;emsp;&amp;emsp;例如： 输入n=10，输出12。">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-关于如何计算第n个丑数的一些思考" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/关于如何计算第n个丑数的一些思考.html" class="article-date">
+  	<time datetime="2018-07-15T03:12:34.000Z" itemprop="datePublished">2018-07-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于如何计算第n个丑数的一些思考
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/letcode/">letcode</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;如题：计算第N的丑数的值是多少。</p>
+<p>&emsp;&emsp;丑数的定义：只包含因子2,3,5的正整数被称作丑数，比如4,10,12都是丑数，而7,23,111则不是丑数，另外1也是丑数。</p>
+<p>&emsp;&emsp;说明：前10个丑数分别是：1， 2， 3， 4， 5， 6， 8， 9， 10， 12。</p>
+<p>&emsp;&emsp;例如： 输入n=10，输出12。</p>
+<a id="more"></a>
+<p>&emsp;&emsp;这道题是我在leetcode上遇到的，首先我的第一反应就是：直接计算从1开始，判断每个数字是否是丑数，找到一个丑数，N就减1，直到N等于0的时候，最后找到的那个丑数，就是我们需要的结果啦。看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function fnthUglyNumber(n) &#123;</span><br><span class="line">    var num = 1, result;</span><br><span class="line">    while (n &gt; 0) &#123;</span><br><span class="line">        var temp = num;</span><br><span class="line">        while (temp % 2 === 0) &#123;</span><br><span class="line">            temp = temp / 2;</span><br><span class="line">        &#125;</span><br><span class="line">        while (temp % 5 === 0) &#123;</span><br><span class="line">            temp = temp / 5;</span><br><span class="line">        &#125;</span><br><span class="line">        while (temp % 3 === 0) &#123;</span><br><span class="line">            temp = temp / 3;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp === 1) &#123;</span><br><span class="line">            result = num;</span><br><span class="line">            n --;</span><br><span class="line">        &#125;</span><br><span class="line">        num ++;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;结果提交解答的时候，提示：超出时间限制。很明显，这种计算方式，当N偏大的时候，将会非常耗时。我测试了一下，当N等于1407的时候大概计算耗时为：8~9秒。所以，这种傻瓜式的计算，肯定是不会通过的啦。</p>
+<p>&emsp;&emsp;很明显，这道题肯定是有什么规律的。具体怎么找寻这个规律来编写代码呢？我又想到一点：那就是所有的丑数一定是前面较小的丑数相乘得来，丑数乘以丑数，结果一定是个丑数。来，看下这种方案的代码实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function fnthUglyNumber(n) &#123;</span><br><span class="line">    var all = [1],</span><br><span class="line">        base = [2,3,5], </span><br><span class="line">        min, </span><br><span class="line">        baseLen = base.length;</span><br><span class="line">    while (n &gt; 1) &#123;</span><br><span class="line">        var allLen = all.length;</span><br><span class="line">        min = all[allLen-1] * base[baseLen-1];</span><br><span class="line">        // 每次循环，计算出下一个丑数，push到列表中</span><br><span class="line">     for(var i = 0; i &lt; allLen; i++) &#123;</span><br><span class="line">            for(var j = 0; j &lt; baseLen; j++)&#123;</span><br><span class="line">                var res = all[i] * base[j];</span><br><span class="line">                if (res &gt; all[allLen -1] &amp;&amp; res &lt; min) &#123;</span><br><span class="line">                    min = res;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        all.push(min);</span><br><span class="line">        n--;</span><br><span class="line">    &#125;</span><br><span class="line">    return all[all.length-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;OK，提交之后通过了程序的验证。再次测试输入1407的时候，几乎可以在瞬间计算出结果。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/web通信技术及其实现方式.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          web通信技术及其实现方式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/深入理解http协议缓存机制.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解http协议缓存机制</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="关于如何计算第n个丑数的一些思考" data-title="关于如何计算第n个丑数的一些思考" data-url="http://yoursite.com/articles/关于如何计算第n个丑数的一些思考.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="关于如何计算第n个丑数的一些思考">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

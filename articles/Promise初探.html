@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-Promise初探 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.Promise概念&amp;emsp;&amp;emsp;Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。">
+<meta name="keywords" content="javascript,promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise初探">
+<meta property="og:url" content="http://yoursite.com/articles/Promise初探.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="1.Promise概念&amp;emsp;&amp;emsp;Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/20.png">
+<meta property="og:updated_time" content="2019-07-17T06:22:43.475Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise初探">
+<meta name="twitter:description" content="1.Promise概念&amp;emsp;&amp;emsp;Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。">
+<meta name="twitter:image" content="http://yoursite.com/images/20.png">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Promise初探" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/Promise初探.html" class="article-date">
+  	<time datetime="2018-05-20T11:08:42.000Z" itemprop="datePublished">2018-05-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Promise初探
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">promise</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Promise概念"><a href="#1-Promise概念" class="headerlink" title="1.Promise概念"></a>1.Promise概念</h1><p>&emsp;&emsp;Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。<br><a id="more"></a></p>
+<h1 id="2-Promise构造函数"><a href="#2-Promise构造函数" class="headerlink" title="2.Promise构造函数"></a>2.Promise构造函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var promise = new Promise(function(resolve, reject) &#123;</span><br><span class="line">setTimeout(resolve, 100, &apos;foo&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">console.log(promise);</span><br></pre></td></tr></table></figure>
+<h1 id="3-Promise基础用法："><a href="#3-Promise基础用法：" class="headerlink" title="3.Promise基础用法："></a>3.Promise基础用法：</h1><p>定义一个方法，返回一个promise对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function getId()&#123;</span><br><span class="line">    return new Promise(function (resolve,reject) &#123;</span><br><span class="line">        setTimeout(function () &#123;</span><br><span class="line">            if(true)&#123;</span><br><span class="line">                resolve(100);</span><br><span class="line">            &#125; </span><br><span class="line">            else &#123;</span><br><span class="line">                reject(&apos;err&apos;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,1000);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用法1：then（resolveCallback，rejectCallback）"><a href="#用法1：then（resolveCallback，rejectCallback）" class="headerlink" title="用法1：then（resolveCallback，rejectCallback）"></a>用法1：then（resolveCallback，rejectCallback）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getId().then(function (id) &#123;</span><br><span class="line">    console.log(id);</span><br><span class="line">&#125;, function (reason) &#123;</span><br><span class="line">    console.log(reason);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="用法2：catch-来处理失败"><a href="#用法2：catch-来处理失败" class="headerlink" title="用法2：catch()来处理失败"></a>用法2：catch()来处理失败</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getId().then(function (id) &#123;</span><br><span class="line">    console.log(id);</span><br><span class="line">&#125;).catch(function (reason) &#123;</span><br><span class="line">    console.log(reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="链式调用-getNameById也是一个异步方法，通过id异步获取名字"><a href="#链式调用-getNameById也是一个异步方法，通过id异步获取名字" class="headerlink" title="链式调用:getNameById也是一个异步方法，通过id异步获取名字"></a>链式调用:getNameById也是一个异步方法，通过id异步获取名字</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getId().then(getNameById).then(function (name) &#123;</span><br><span class="line">    console.log(name);</span><br><span class="line">&#125;).catch(function (err) &#123;</span><br><span class="line">    console.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="4-Promise状态"><a href="#4-Promise状态" class="headerlink" title="4.Promise状态"></a>4.Promise状态</h1><p>&emsp;&emsp;pomise有三种状态，分别是pending（初始状态），fulfilled（操作成功），rejected（操作失败）。他们之间的关系如下图：</p>
+<p><img src="/images/20.png" alt=""></p>
+<h1 id="5-Promise的方法"><a href="#5-Promise的方法" class="headerlink" title="5.Promise的方法"></a>5.Promise的方法</h1><p>&emsp;&emsp;Promise.all([p1,p2,p3…]):返回一个新的promise对象，它的参数可以不是一个数组，但是必须具有iterator接口。如果所有的promise对象状态都变成了fulfilled，那么这个新的promise对象的状态才会变成fulfilled，返回这个传入的集合对象的返回值按照原顺序组成一个集合返回；如果这个集合中有一个promise对象的状态变成rejecte，那么新对象的状态立刻变成rejected，并返回第一个失败的promise对象的错误信息。</p>
+<p>&emsp;&emsp;Promise.race([p1,p2,p3…]):返回一个新的promise对象，只要iterator中有一个promise对象的状态先改变，就会将其值传递给外层promise对象继续执行下面的操作。</p>
+<p>&emsp;&emsp;Promise.reject(reason)：返回一个用reason拒绝的Promise。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Promise.reject(&quot;Testing static reject&quot;).then(function(reason) &#123;</span><br><span class="line">// 未被调用</span><br><span class="line">&#125;, function(reason) &#123;</span><br><span class="line">console.log(reason); // &quot;测试静态拒绝&quot;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;Promise.resolve(value)：一个状态由value决定的promise对象；如果该值是promise对象，则直接返回该对象；如果该值是thenable(即，带有then方法的对象)，返回的Promise对象的最终状态由then方法执行决定；否则的话(该value为空，基本类型或者不带then方法的对象),返回的Promise对象状态为fulfilled，并且将该value传递给对应的then方法。通常而言，如果你不知道一个值是否是Promise对象，使用Promise.resolve(value) 来返回一个Promise对象,这样就能将该value以Promise对象形式使用。</p>
+<h1 id="6-Promise的原形"><a href="#6-Promise的原形" class="headerlink" title="6.Promise的原形"></a>6.Promise的原形</h1><p>&emsp;&emsp;Promise.prototype.constructor:构造函数。</p>
+<p>&emsp;&emsp;Promise.prototype.catch(noRejected):添加一个失败回调到当前到promise实例对象上。</p>
+<p>&emsp;&emsp;Promise.prototype.then(onFulFIlled,onRejected):添加一个成功和失败回调到当前promise实例对象上。</p>
+<p>&emsp;&emsp;Promise.prototype.finally(onFinally):通过它添加调回调会在promise运行完后被执行，无论运行到结果状态是失败还是成功。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/http状态码和首部字段详解.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          http状态码和首部字段详解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="Promise初探" data-title="Promise初探" data-url="http://yoursite.com/articles/Promise初探.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="Promise初探">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

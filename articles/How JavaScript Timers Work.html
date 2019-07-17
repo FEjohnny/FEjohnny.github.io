@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-How JavaScript Timers Work | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;理解javascript的定时器的工作原理对于打好编程基础来说非常重要。因为他们运行在单线程的程式中，所以他们的表现总是不那么直观。让我们通过测试下面这三个函数来看看是如何创建和操作定时器的。">
+<meta name="keywords" content="javascript,timers">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How JavaScript Timers Work">
+<meta property="og:url" content="http://yoursite.com/articles/How JavaScript Timers Work.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;理解javascript的定时器的工作原理对于打好编程基础来说非常重要。因为他们运行在单线程的程式中，所以他们的表现总是不那么直观。让我们通过测试下面这三个函数来看看是如何创建和操作定时器的。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/26.jpeg">
+<meta property="og:updated_time" content="2019-07-17T07:38:52.697Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How JavaScript Timers Work">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;理解javascript的定时器的工作原理对于打好编程基础来说非常重要。因为他们运行在单线程的程式中，所以他们的表现总是不那么直观。让我们通过测试下面这三个函数来看看是如何创建和操作定时器的。">
+<meta name="twitter:image" content="http://yoursite.com/images/26.jpeg">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-How JavaScript Timers Work" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/How JavaScript Timers Work.html" class="article-date">
+  	<time datetime="2017-10-27T03:03:35.000Z" itemprop="datePublished">2017-10-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How JavaScript Timers Work
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/timers/">timers</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;理解javascript的定时器的工作原理对于打好编程基础来说非常重要。因为他们运行在单线程的程式中，所以他们的表现总是不那么直观。让我们通过测试下面这三个函数来看看是如何创建和操作定时器的。</p>
+<a id="more"></a>
+<p>&emsp;&emsp;1. var id = setTimeout(fn, delay);启动一个定时，在延迟数毫秒后调用指定函数。此方法会返回一个唯一的（定时器）id，方便在这之后取消这个定时器。</p>
+<p><img src="/images/26.jpeg" alt=""></p>
+<p>&emsp;&emsp;2. var id = setInterval(fn, delay) ;和setTimeout非常相似，只不过它会间隔地一直调用指定函数，直到定时器被取消。</p>
+<p>&emsp;&emsp;3. clearInterval(id);, clearTimeout(id);清除定时器方法，接受一个定时器id参数，并结束该定时器的回调。</p>
+<p>&emsp;&emsp;为了理解定时器内部是如何工作的，这里有一个非常重要的概念需要说明一下：定时器的延迟是不能保证的。由于浏览器所有的javascirpt都是运行在一个单线程中，异步事件（比如点击事件，定时器）仅在被触发时候才会开始执行（比如点击事件的回调，需要点击事件触发才会去执行回调）。请看下面的图示：</p>
+<p>&emsp;&emsp;这个图中有大量的信息需要消化，完全理解它有助于帮助你更好地理解javascript的异步事件编程。从纵向来看，我们有个以毫秒为单位的时钟，蓝色框代表正在执行的javascript部分。比如第一个蓝色盒子表示javascript大约执行了18毫秒，又比如第二个蓝色盒子代表javascript大约执行了11毫秒，等等。</p>
+<p>&emsp;&emsp;因为javascript每次只能执行一段代码（由于其单线程的特性），每段代码的执行都会阻塞其他的异步事件的进程。这就意味着当一个异步事件被触发的时候（比如鼠标点击，定时器触发，或者XMLHttpRequest对象的完成事件）它的回调程序就会到执行队列中排队等待执行（实际上这种队列是如何实现的，每个浏览器可能不同，因此只能把它简单想成这样）。</p>
+<p>&emsp;&emsp;首先，在第一块javascript代码（蓝色盒子）中，两个定时器被启动：一个10毫秒的setTimeout和一个10毫秒的setInterve。在第一块代码全部执行完毕之前，这两个定时器一定会被启动，但他们不会立即执行回调（由于单线程的原因），而是把延迟（回调）函数放在队列中，等待在下一个空闲的时候才会被执行。</p>
+<p>&emsp;&emsp;此外，在第一个javascript代码块中有一个鼠标点击事件被触发。与它相关的javascript回调函数（我们不知道用户什么时候可以执行一个动作，因此认为它是异步的）也无法立即执行，像之前的计时器一样，它也是排在队列中等待执行。</p>
+<p>&emsp;&emsp;在完成JavaScript第一块代码的执行之后，浏览器立即开始考虑一个问题：等待执行的有哪些？在这种情况下，鼠标单击处理程序和计时器回调都在等待。然后浏览器选择一个（鼠标单击回调）并立即执行它。计时器将等待到下一个可能的时间，才会执行。</p>
+<p>&emsp;&emsp;注意，当鼠标单击回调处理程序正在执行时，第一个定时器回调将要被执行。因为interval的回调处理程序正在队列中排队等待执行，这时，当interval再次触发时，它这次需要执行的回调处理程序将被删除，也就是说不会重复进入队列。当一大段代码正在执行的时候，如果你让所有的定时器回调进入队列中排队，结果会是一堆没有间隙的回调一直被执行，直到所有执行完毕。相反，在其他的任务被放入队列排队之前，浏览器倾向于只是简单的等待，直到所有的定时回调任务都被执行完。</p>
+<p>&emsp;&emsp;事实上，我们可以看到，当interval的回调正在执行时，第三个interval回调会发生这种情况。这告诉了我们一个重要的事实：intervals不在乎当前正在执行的是什么，他们只管尝试进入队列排队，即便两个回调之间的间隔的时间会被牺牲（这就是之前说的为什么定时器的延迟是不能保证的的原因）。</p>
+<p>&emsp;&emsp;最后，在第二个interval回调完成后，我们可以看到JavaScript引擎没有什么可以执行的了。这意味着浏览器现在正在等待一个新的异步事件发生。当interval再次触发的时候，我们得到这个在50ms的标记。然而，这一次，没有任何东西阻止它的执行，所以它立即执行。</p>
+<p>&emsp;&emsp;让我们看一个例子来更好地说明两者之间的区别。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(function()&#123;    </span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    setTimeout(arguments.callee,10);</span><br><span class="line"></span><br><span class="line">&#125;,10);</span><br><span class="line"></span><br><span class="line">setInterval(function()&#123;</span><br><span class="line"></span><br><span class="line">.......</span><br><span class="line"></span><br><span class="line">&#125;,10);</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这两段代码乍看起来可能在功能上是等价的，但它们不是。setTimeout回调执行会间隔上一次回调（任何代码）的执行至少有一个10ms的延时（有可能会更多，但不会少），而setInterval将试图每10ms执行一次回调不论上次是否执行。</p>
+<p>&emsp;&emsp;让我们回顾一下这里学到的事情：</p>
+<pre><code>1.JavaScript引擎只有一个线程，强制异步事件排队等待执行。
+
+2.setTimeout()和setInterval()在执行方面有着根本的不同。
+
+3.如果一个计时器被阻止立即执行，它将被延迟到下一个可能的执行点（这将比预期的延迟更长）。
+
+4.如果执行时间长（比指定的延迟时间长），则interval可以连续地执行回调。
+</code></pre><p>&emsp;&emsp;所有这些都是非常重要的知识。了解JavaScript引擎是如何工作的，特别是在发生的大量异步事件的情况下，在构建高级应用程序代码时是一个很好的基础。</p>
+<p>— 译自Jquery作者John Resig’s blog《How JavaScript Timers Work》,原文链接<a href="https://johnresig.com/blog/how-javascript-timers-work/" target="_blank" rel="noopener">https://johnresig.com/blog/how-javascript-timers-work/</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/vue如何引入js库，vue插件编写，canvas相关.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          vue如何引入js库，vue插件编写，canvas相关
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/做了个富文本编辑器.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">做了个富文本编辑器</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="How JavaScript Timers Work" data-title="How JavaScript Timers Work" data-url="http://yoursite.com/articles/How JavaScript Timers Work.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="How JavaScript Timers Work">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

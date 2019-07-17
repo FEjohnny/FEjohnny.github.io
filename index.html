@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a>
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
 					</div>
 				</section>
 				
@@ -172,6 +172,68 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-javascript设计模式之Observer(观察者)模式和Publish Subscribe模式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/javascript设计模式之Observer(观察者)模式和Publish Subscribe模式.html" class="article-date">
+  	<time datetime="2019-07-17T07:46:21.409Z" itemprop="datePublished">2019-07-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/javascript设计模式之Observer(观察者)模式和Publish Subscribe模式.html">
+        javascript设计模式之Observer(观察者)模式和Publish/Subscribe模式
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、Observer-观察者"><a href="#一、Observer-观察者" class="headerlink" title="一、Observer(观察者)"></a>一、Observer(观察者)</h1><p>&emsp;&emsp; 在Observer(观察者)模式中，一个对象（subject）维持一系列依赖于它（观察者）的对象；当一个目标需要告诉观察者发生了什么有趣的的事情时，它会向观察者广播一个通知（可以包括与通知主题相关的特定数据）；当我们不再希望某个特定的观察者获得其注册目标发出的改变通知时，该目标可以将它从观察者列表中移除。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/javascript设计模式之Observer(观察者)模式和Publish Subscribe模式.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-记一次node服务中koa-redis+koa-generic-session改为ioredis+koa-session中遇到的坑" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -359,6 +421,130 @@
 
 
   
+    <article id="post-javascript设计模式之Coustructor(构造器)模式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/javascript设计模式之Coustructor(构造器)模式.html" class="article-date">
+  	<time datetime="2018-09-02T09:11:45.000Z" itemprop="datePublished">2018-09-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/javascript设计模式之Coustructor(构造器)模式.html">
+        javascript设计模式之Coustructor(构造器)模式
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp; 在经典面向对象编程语言中，Coustructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。而在javascript中，几乎所有东西都是对象，通常我们最感兴趣的的object构造器；object构造器用于创建特定类型的对象，同时可以构造器接手参数以在第一次创建对西那个时设置成员属性和方法值。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/javascript设计模式之Coustructor(构造器)模式.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-我所经历过的前后端协作方式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/我所经历过的前后端协作方式.html" class="article-date">
+  	<time datetime="2018-08-12T13:35:46.000Z" itemprop="datePublished">2018-08-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/我所经历过的前后端协作方式.html">
+        我所经历过的前后端协作方式
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、前后端耦合，页面直出"><a href="#一、前后端耦合，页面直出" class="headerlink" title="一、前后端耦合，页面直出"></a>一、前后端耦合，页面直出</h1><p>&emsp;&emsp;这是比较古老的一种前后端协作方式了，不过我还真经历过那么一段时间，前端一般就是需要负责还原设计稿，然后将html和css还有一些少量的js代码交给后端，后端集成模板（像freemarker，smarty之类的）输出页面，偶尔有一些比较少的ajax，或者一些交互动画需要前端用js编写。这种方式没什么好说的，前端基本就是切图。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前后端协作/">前后端协作</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/我所经历过的前后端协作方式.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-web通信技术及其实现方式" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
@@ -407,6 +593,71 @@
       
         <p class="article-more-link">
           <a href="/articles/web通信技术及其实现方式.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-关于如何计算第n个丑数的一些思考" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/关于如何计算第n个丑数的一些思考.html" class="article-date">
+  	<time datetime="2018-07-15T03:12:34.000Z" itemprop="datePublished">2018-07-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/关于如何计算第n个丑数的一些思考.html">
+        关于如何计算第n个丑数的一些思考
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;如题：计算第N的丑数的值是多少。</p>
+<p>&emsp;&emsp;丑数的定义：只包含因子2,3,5的正整数被称作丑数，比如4,10,12都是丑数，而7,23,111则不是丑数，另外1也是丑数。</p>
+<p>&emsp;&emsp;说明：前10个丑数分别是：1， 2， 3， 4， 5， 6， 8， 9， 10， 12。</p>
+<p>&emsp;&emsp;例如： 输入n=10，输出12。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/letcode/">letcode</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/关于如何计算第n个丑数的一些思考.html#more">more >></a>
         </p>
       
     
@@ -555,262 +806,10 @@
 
 
   
-    <article id="post-PWA技术之添加到主屏" class="article article-type-post" itemscope="" itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/articles/PWA技术之添加到主屏.html" class="article-date">
-  	<time datetime="2018-06-09T09:15:28.000Z" itemprop="datePublished">2018-06-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/PWA技术之添加到主屏.html">
-        PWA技术之添加到主屏
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一-添加到主屏幕"><a href="#一-添加到主屏幕" class="headerlink" title="一. 添加到主屏幕"></a>一. 添加到主屏幕</h1><p>&emsp;&emsp;允许将站点添加至主屏幕，是 PWA 提供的一项重要功能。虽然目前部分浏览器已经支持向主屏幕添加网页快捷方式以方便用户快速打开站点，但是 PWA 添加到主屏幕的不仅仅是一个网页快捷方式，它将提供更多的功能，让 PWA 具有更加原生的体验。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/articles/PWA技术之添加到主屏.html#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-PWA技术之service workers" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/articles/PWA技术之service workers.html" class="article-date">
-  	<time datetime="2018-06-09T07:41:04.000Z" itemprop="datePublished">2018-06-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/PWA技术之service workers.html">
-        PWA技术之service workers
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h1><p>&emsp;&emsp;Service Workers是PWA的关键。我觉得它最主要的一个功能就是：使你可以不通过网络连接来访问资源。它是一个运行于后台的js脚本，只需短短几行代码，即可完成拦截网络请求，处理推送消息和并行执行任务等任务。如果当前客户端不支持service workers，它们只是简单的回退，应用程序就作为一个普通的应用程序来运行，这也就是Progressive（渐进增强）的由来；也就是指，你完全可以先创建一个在任何地方运行的应用，然后为支持高级功能的设备增强体验。</p>
-<p>&emsp;&emsp;如何理解service workers？来看Google 的 Jeff Posnick 是如何描述他们的：“将你的网络请求想象成飞机起飞。Service Worker 是路由请求的空中交通管制员。它可以通过网络加载，或甚至通过缓存加载。（甚至可以重定向加载）”。也就是说，Service Workers 能够拦截进出的 HTTP 请求，从而完全控制你的网站。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/articles/PWA技术之service workers.html#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-什么是PWA" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/articles/什么是PWA.html" class="article-date">
-  	<time datetime="2018-06-09T05:01:37.000Z" itemprop="datePublished">2018-06-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/什么是PWA.html">
-        什么是PWA
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一-什么是PWA"><a href="#一-什么是PWA" class="headerlink" title="一.什么是PWA"></a>一.什么是PWA</h1><p>&emsp;&emsp;Progressive Web App, 简称 PWA，是提升 Web App 的体验的一种新方法，能给用户原生应用的体验。</p>
-<p>&emsp;&emsp;PWA 能做到原生应用的体验不是靠特指某一项技术，而是经过应用一些新技术进行改进，在安全、性能和体验三个方面都有很大提升，PWA 本质上是 Web App，借助一些新技术也具备了 Native App 的一些特性，兼具 Web App 和 Native App 的优点。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/articles/什么是PWA.html#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-http状态码和首部字段详解" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/articles/http状态码和首部字段详解.html" class="article-date">
-  	<time datetime="2018-05-22T13:06:42.000Z" itemprop="datePublished">2018-05-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/http状态码和首部字段详解.html">
-        http状态码和首部字段详解
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;http：HyperText Transfer Protocol 超文本传输协议</p>
-<p>&emsp;&emsp;诞生背景：1990年问世</p>
-<h3 id="tcp-ip按层次分别分为4层："><a href="#tcp-ip按层次分别分为4层：" class="headerlink" title="tcp/ip按层次分别分为4层："></a>tcp/ip按层次分别分为4层：</h3><pre><code>应用层：决定向用户提供应用服务时通信的活动。http也处于该层。
-传输层：对上层的应用层，提供处于网络链接中两台计算机之间的数据传输。有tcp（传输控制协议）和udp（用户数据报协议）。
-网络层：用来处理在网络上流动的数据包，该层规定了通过怎样的路径（传输路线）到达对方计算机，并把数据包传送给对方，与对方计算机之间通过多太计算机或网络设备进行传输时，网络层所起的作用就是在众多的选项内选择一条传输路线。
-链路层：又名数据链路层/网络接口层，用来处理链接网络的硬件部分，硬件上的范畴均在链路层的作用范围之内。
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/articles/http状态码和首部字段详解.html#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">

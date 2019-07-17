@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-vue如何引入js库，vue插件编写，canvas相关 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.vue框架引入js库的正确方式:a.全局变量法：window._ = require(‘xxx.js’);即将对象绑定到window上，如果服务端渲染，就没有window对象，会报错。">
+<meta name="keywords" content="javascript,vue,canvas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue如何引入js库，vue插件编写，canvas相关">
+<meta property="og:url" content="http://yoursite.com/articles/vue如何引入js库，vue插件编写，canvas相关.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="1.vue框架引入js库的正确方式:a.全局变量法：window._ = require(‘xxx.js’);即将对象绑定到window上，如果服务端渲染，就没有window对象，会报错。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-17T06:35:51.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue如何引入js库，vue插件编写，canvas相关">
+<meta name="twitter:description" content="1.vue框架引入js库的正确方式:a.全局变量法：window._ = require(‘xxx.js’);即将对象绑定到window上，如果服务端渲染，就没有window对象，会报错。">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-vue如何引入js库，vue插件编写，canvas相关" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/vue如何引入js库，vue插件编写，canvas相关.html" class="article-date">
+  	<time datetime="2018-04-15T02:02:21.000Z" itemprop="datePublished">2018-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue如何引入js库，vue插件编写，canvas相关
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-vue框架引入js库的正确方式"><a href="#1-vue框架引入js库的正确方式" class="headerlink" title="1.vue框架引入js库的正确方式:"></a>1.vue框架引入js库的正确方式:</h1><h3 id="a-全局变量法："><a href="#a-全局变量法：" class="headerlink" title="a.全局变量法："></a>a.全局变量法：</h3><p>window._ = require(‘xxx.js’);<br>即将对象绑定到window上，如果服务端渲染，就没有window对象，会报错。</p>
+<a id="more"></a>
+<h3 id="b-处处引入法："><a href="#b-处处引入法：" class="headerlink" title="b.处处引入法："></a>b.处处引入法：</h3><p>import _ from ‘xxx’；<br>在需要的地方就引入，不够简洁，打包可能出现重复代码。</p>
+<h3 id="c-将库变成vue原型对象的属性："><a href="#c-将库变成vue原型对象的属性：" class="headerlink" title="c.将库变成vue原型对象的属性："></a>c.将库变成vue原型对象的属性：</h3><p>import _ from ‘xxx’;<br>Object.definePrototype(vue.prototype,’$<em>‘,{value:</em>});<br>由于所有的组件都会继承Vue原型对象上的方法，因此这些方法在任何组件文件中都能通过this.$_访问到。</p>
+<h3 id="d-写成插件："><a href="#d-写成插件：" class="headerlink" title="d.写成插件："></a>d.写成插件：</h3><p>如果你在项目的很多地方都用了某个库，或者你希望全局可用，你可以构建自己的Vue 插件。插件能化繁为简，能让你像下面这样很简单地引入自己想要的库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import MyLibraryPlugin from &apos;my-library-plugin&apos;;</span><br><span class="line">Vue.use(MyLibraryPlugin);</span><br></pre></td></tr></table></figure>
+<p>就像Vue Route，Vuex等插件一样，我们的库仅仅需要两行，就能在任何地方使用了。</p>
+<p>如何编写插件：</p>
+<p>首先，创建一个文件。本例中，我将引入一个Axios库的插件。我们就把这个文件命名为axios.js 吧。最关键的地方在于，我们需要暴露一个将Vue构造器作为第一个参数的install 方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">axios.js</span><br><span class="line">import axios from &apos;axios&apos;;</span><br><span class="line">export default &#123;</span><br><span class="line">  install: function(Vue，name=&quot;$http&quot;) &#123;</span><br><span class="line">    Object.defineProperty(Vue.prototype, name, &#123; value: axios &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着我们只需要Vue实例的use方法就能将这个库引入整个项目了。我们像下面代码一样简单引入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import AxiosPlugin from &apos;./axios.js&apos;;</span><br><span class="line">Vue.use(AxiosPlugin);</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  created() &#123;</span><br><span class="line">    console.log(this.$http ? &apos;Axios works!&apos; : &apos;Uh oh..&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="2-canvas"><a href="#2-canvas" class="headerlink" title="2.canvas:"></a>2.canvas:</h1><h3 id="a-canvas的元素大小与绘图表面大小："><a href="#a-canvas的元素大小与绘图表面大小：" class="headerlink" title="a. canvas的元素大小与绘图表面大小："></a>a. canvas的元素大小与绘图表面大小：</h3><p>这样设置的是元素大小和绘图表面大小，如果用css样式去设置canvas的大小，实际是设置的canvas元素大小，而绘图表面大小还是默认值（300,150），当canvas元素大小不符合其绘图表面的大小时，浏览器会对绘图表面进行缩放，使其符合元素的大小。</p>
+<h3 id="b-web-GL："><a href="#b-web-GL：" class="headerlink" title="b. web GL："></a>b. web GL：</h3><p>全名Web Graphics Library，一种3D绘图协议，这种绘图技术标准允许把javascript与OpenGL ES 2.0结合在一起，通过增加OpenGL ES 2.0的一个JavaScript绑定，WebGL可以为HTML5 Canvas提供硬件3D加速渲染，这样Web开发人员就可以借助系统显卡来在浏览器里更流畅地展示3D场景和模型了，还能创建复杂的导航和数据视觉化。</p>
+<h3 id="c-CanvasRenderingContext2D对象所含属性方法，这些方法用来绘制图形："><a href="#c-CanvasRenderingContext2D对象所含属性方法，这些方法用来绘制图形：" class="headerlink" title="c. CanvasRenderingContext2D对象所含属性方法，这些方法用来绘制图形："></a>c. CanvasRenderingContext2D对象所含属性方法，这些方法用来绘制图形：</h3><pre><code>canvas： 指向该绘图环境所属的canvas对象。context.canvas
+
+fillstyle：指定该绘图环境再后续的图形填充操作中所使用的颜色、渐变色或图案。context.fillstyle=&quot;#000000&quot;。
+
+gloabalAlpha：全局透明度设定，取值0~1，浏览器会将每个像素的alpha值与该值相乘。
+
+gloabalCompsiteOperation：该值告诉浏览器将某个物体绘制在其他物体之上时，所采取的绘制方式。可取值如下图，
+</code></pre><p>gloabalCompsiteOperation可取值</p>
+<pre><code>lineCap：该值告诉浏览器如何绘制线段的端点，可取值：butt（默认），round，square。
+
+lineWidth：该值决定了在canvas之中绘制线段的屏幕像素宽度。默认1.0
+
+lineJoin：告诉浏览器在两条线段相交时如何绘制焦点，可取值：bevel，round，miter（默认）。
+
+miterLimit：告诉浏览器如何绘制miter形式的线段焦点。
+
+shadowBlur：该值决定了浏览器如何延伸阴影效果（高斯模糊）.,默认0。
+
+shadowColor：阴影颜色，通常采用半透明色。
+
+shadowOffsetX/shadowOffsetY：单位像素，指定阴影效果的水平/垂直偏移量
+
+strokeStyle：指定了对路径进行描边时所用的绘制风格，可谓色值、渐变色或图案。
+
+textAlign/textBaseline：决定了fillText()或strokeText()方法进行绘制时，所画文本的水平/垂直对齐方式。 
+
+measureText：在画布输出文本之前检测文本宽度。
+</code></pre><h3 id="d-canvas状态保存与恢复："><a href="#d-canvas状态保存与恢复：" class="headerlink" title="d.canvas状态保存与恢复："></a>d.canvas状态保存与恢复：</h3><p>context.save()和context.restore()，用于保存和恢复当前canvas绘图环境的所有属性。save方法将当前的绘图环境压入堆栈顶部，restore方法则从堆栈顶部弹出一组状态信息来恢复绘制环境的状态，因此可以嵌套式地调用save（）/restore（）。</p>
+<h3 id="e-canvas、svg与webGL："><a href="#e-canvas、svg与webGL：" class="headerlink" title="e.canvas、svg与webGL："></a>e.canvas、svg与webGL：</h3><pre><code>Canvas 是需要自己画点的白板； 
+
+SVG 是给数据就可以绘制点、线、图形的，基于 XML 的标记语言； 
+
+WebGL 是基于 Canvas 的 3D 框架。 
+
+Canvas 适用于位图，高数据量高绘制频率（帧率）的场景，如动画、游戏； 
+
+SVG 适用于矢量图，低数据量低绘制频率的场景，如图形、图表； 
+
+WebGL 主要用来做 3D 展示、动画、游戏。
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/How JavaScript Timers Work.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">How JavaScript Timers Work</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="vue如何引入js库，vue插件编写，canvas相关" data-title="vue如何引入js库，vue插件编写，canvas相关" data-url="http://yoursite.com/articles/vue如何引入js库，vue插件编写，canvas相关.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="vue如何引入js库，vue插件编写，canvas相关">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

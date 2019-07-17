@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-我所经历过的前后端协作方式 | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、前后端耦合，页面直出&amp;emsp;&amp;emsp;这是比较古老的一种前后端协作方式了，不过我还真经历过那么一段时间，前端一般就是需要负责还原设计稿，然后将html和css还有一些少量的js代码交给后端，后端集成模板（像freemarker，smarty之类的）输出页面，偶尔有一些比较少的ajax，或者一些交互动画需要前端用js编写。这种方式没什么好说的，前端基本就是切图。">
+<meta name="keywords" content="javascript,前后端协作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我所经历过的前后端协作方式">
+<meta property="og:url" content="http://yoursite.com/articles/我所经历过的前后端协作方式.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="一、前后端耦合，页面直出&amp;emsp;&amp;emsp;这是比较古老的一种前后端协作方式了，不过我还真经历过那么一段时间，前端一般就是需要负责还原设计稿，然后将html和css还有一些少量的js代码交给后端，后端集成模板（像freemarker，smarty之类的）输出页面，偶尔有一些比较少的ajax，或者一些交互动画需要前端用js编写。这种方式没什么好说的，前端基本就是切图。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/30.png">
+<meta property="og:updated_time" content="2019-07-17T09:25:31.888Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我所经历过的前后端协作方式">
+<meta name="twitter:description" content="一、前后端耦合，页面直出&amp;emsp;&amp;emsp;这是比较古老的一种前后端协作方式了，不过我还真经历过那么一段时间，前端一般就是需要负责还原设计稿，然后将html和css还有一些少量的js代码交给后端，后端集成模板（像freemarker，smarty之类的）输出页面，偶尔有一些比较少的ajax，或者一些交互动画需要前端用js编写。这种方式没什么好说的，前端基本就是切图。">
+<meta name="twitter:image" content="http://yoursite.com/images/30.png">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-我所经历过的前后端协作方式" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/我所经历过的前后端协作方式.html" class="article-date">
+  	<time datetime="2018-08-12T13:35:46.000Z" itemprop="datePublished">2018-08-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      我所经历过的前后端协作方式
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前后端协作/">前后端协作</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、前后端耦合，页面直出"><a href="#一、前后端耦合，页面直出" class="headerlink" title="一、前后端耦合，页面直出"></a>一、前后端耦合，页面直出</h1><p>&emsp;&emsp;这是比较古老的一种前后端协作方式了，不过我还真经历过那么一段时间，前端一般就是需要负责还原设计稿，然后将html和css还有一些少量的js代码交给后端，后端集成模板（像freemarker，smarty之类的）输出页面，偶尔有一些比较少的ajax，或者一些交互动画需要前端用js编写。这种方式没什么好说的，前端基本就是切图。</p>
+<a id="more"></a>
+<h1 id="二、前后端部分分离"><a href="#二、前后端部分分离" class="headerlink" title="二、前后端部分分离"></a>二、前后端部分分离</h1><p>&emsp;&emsp;ajax的流行以及一些前端框架的出现，比如backbone，angular，react等前端框架，动态网站、单页应用、富应用、甚至离线应用的出现，这就场景下，前端所扮演的角色就不仅仅是切图那么简单了。这个时候前端需要处理复杂的数据和逻辑交互，前端除了要有扎实的js、dom、browse相关的基础外，对于前后端的交互、网络协议、前端缓存等知识都需要有比较清晰的认识。</p>
+<p>&emsp;&emsp;通常情况下，前后端都采用接口进行数据交互。只不过前端在页面路由上还是需要依赖后端，比如如果用php做服务端开发，前端即使是用react做的单页应用，打包之后的index.html文件，还是需要依赖php的路由做页面输出，一般都会打包成index.php文件放到php的view目录下来使用。</p>
+<p>&emsp;&emsp;但是如果我们需要在页面输出时（不是用ajax获取）就获取一些信息（比如用户信息）的时候，还是需要依赖php在controller或者action里面给我们返回，然后用php语法输出到页面上，然后我们才能获取到。还有像权限的校验这些，也需要后端同学来帮我们做控制。。。也就是还有很多需要依赖后端的任务，我们无法或者不方便自己完成。</p>
+<p>&emsp;&emsp;因此，就算在通过php的框架来作为接入层转发到server处理这种比较理想的一种架构模式下，前端页面和php框架的耦合还是比较重，导致开发人员要么需要了解php框架和相关对模板语法；要么得通过和后端沟通来拿到自己想要对数据结构。并且这种模式和前端框架（比如react）分离，无法有效协同管理和代码复用。在需要做服务端同构的时候，其难度也是相当的大。</p>
+<h1 id="三、前后端完全分离"><a href="#三、前后端完全分离" class="headerlink" title="三、前后端完全分离"></a>三、前后端完全分离</h1><p>&emsp;&emsp;最后一种，也是我目前团队所使用的一种协作方式。</p>
+<p>node.js的出现，完全可以解决上面前后端部分分离的问题。很多人对于node.js的认识可能还停留在用来写构建工具上面，其实node.js作为接入层更有其他语言无法媲美的优点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 架构升级--前端可以更全面的接管后端模板渲染工作，推动后端服务化利于独立架构升级。</span><br><span class="line"></span><br><span class="line">2. 加快开发--通过node.js层的接入，后端只需要负责提供数据，前端对数据有更强的组合调整能力，很多需求变更将不再依赖后端开发，减少前后端沟通成本和后端的开发成本。</span><br><span class="line"></span><br><span class="line">3. 性能提升--单线程，异步，事件驱动；node.js 运行在google v8引擎之上，加之原生异步IO模型，使得node.js在性能上的表现非常出色。</span><br><span class="line"></span><br><span class="line">4. 社区支持---node.js的社区非常活跃。</span><br></pre></td></tr></table></figure>
+<p>node作为接入层时的系统架构图</p>
+<p><img src="/images/30.png" alt=""></p>
+<p>&emsp;&emsp;不过，采用node.js作为接入层，虽然能够大大地提高生产力和对于需求变化时的应对能力，同时也对前端人员的素质要求比较高。前端人员除了需要具备上述前端技能之外，还需要对涉及后端广泛的知识也要有一定程度的掌握，比如服务器搭建和监控、网络协议、文件IO、缓存（比如redis）、shell脚本、服务器运维等一些列的技术，方能应对一切有可能发生的问题。</p>
+<p>&emsp;&emsp;一来，前端人员大都只关注浏览器端，对服务端开发关注很少，或者根本就不关注；二来，大都只认为node.js只适合开发一些工具类的功能，对于后端开发只是个玩具。我想这也是node.js不能作为后端开发语言而广泛使用的原因。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/javascript设计模式之Coustructor(构造器)模式.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          javascript设计模式之Coustructor(构造器)模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/web通信技术及其实现方式.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">web通信技术及其实现方式</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="我所经历过的前后端协作方式" data-title="我所经历过的前后端协作方式" data-url="http://yoursite.com/articles/我所经历过的前后端协作方式.html" data-images="http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg" data-content="我所经历过的前后端协作方式">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2019 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
