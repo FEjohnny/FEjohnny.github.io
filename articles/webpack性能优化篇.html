@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-webpack性能优化篇，二次构建提速90% | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;关于webpack的优化方案有很多，不管官方的还是非官方的。总结起来大概有如下几种优化方式：  优化模块搜索、模块解析时间（loader配置，resolve.module配置，resolve.alias配置，resolve.extensions 配置，resolve.mainFields 配置，module.noParse 配置）">
+<meta name="keywords" content="webpack,性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack性能优化篇，二次构建提速90%">
+<meta property="og:url" content="http://yoursite.com/articles/webpack性能优化篇.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;关于webpack的优化方案有很多，不管官方的还是非官方的。总结起来大概有如下几种优化方式：  优化模块搜索、模块解析时间（loader配置，resolve.module配置，resolve.alias配置，resolve.extensions 配置，resolve.mainFields 配置，module.noParse 配置）">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/36.png">
+<meta property="og:image" content="http://yoursite.com/images/37.png">
+<meta property="og:image" content="http://yoursite.com/images/38.png">
+<meta property="og:updated_time" content="2020-06-14T10:11:06.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack性能优化篇，二次构建提速90%">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;关于webpack的优化方案有很多，不管官方的还是非官方的。总结起来大概有如下几种优化方式：  优化模块搜索、模块解析时间（loader配置，resolve.module配置，resolve.alias配置，resolve.extensions 配置，resolve.mainFields 配置，module.noParse 配置）">
+<meta name="twitter:image" content="http://yoursite.com/images/36.png">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/images/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 17.5px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/node/" style="font-size: 12.5px;">node</a> <a href="/tags/promise/" style="font-size: 12.5px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/前端/" style="font-size: 17.5px;">前端</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/测试/" style="font-size: 15px;">测试</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/自动化/" style="font-size: 15px;">自动化</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/images/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-webpack性能优化篇" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/webpack性能优化篇.html" class="article-date">
+  	<time datetime="2020-06-14T09:12:34.000Z" itemprop="datePublished">2020-06-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack性能优化篇，二次构建提速90%
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;关于webpack的优化方案有很多，不管官方的还是非官方的。总结起来大概有如下几种优化方式：</p>
+<ol>
+<li>优化模块搜索、模块解析时间（loader配置，resolve.module配置，resolve.alias配置，resolve.extensions 配置，resolve.mainFields 配置，module.noParse 配置）</li>
+</ol>
+<a id="more"></a>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><ol>
+<li>客服工作台前端代码使用vue(v2.6) + webpack(v4.39.1)编写和构建，随着业务规模的增长，代码量变得越来越大，仅工作台一个模块下面就有<strong>82</strong>个vue(单文件组件)文件，<strong>24749</strong>行代码。每次构建需要<strong>17秒</strong>左右（自己的imac，性能还算好的了），17秒对于首次构建还可以接受；但实际开发中，二次构建的次数要远远远远大于首次构建的次数，对于开发调试时每次修改代码要等上17秒才能在浏览器中看到修改后代码的运行效果，<strong>感觉就是在浪费生命-。-</strong>。</li>
+<li>一个因为二次构建速度引发的事故</li>
+</ol>
+<p>由此可见，提升代码二次构建速度，将直接影响代码调试效率。</p>
+<h1 id="构建速度检测和分析"><a href="#构建速度检测和分析" class="headerlink" title="构建速度检测和分析"></a>构建速度检测和分析</h1><p>优化的第一步是首先找出webpack构建都把时间花在了哪里。通过使用<a href="https://www.npmjs.com/package/speed-measure-webpack-plugin" title="speed-measure-webpack-plugin" target="_blank" rel="noopener">speed-measure-webpack-plugin</a>，测量出webpack调试时构建期间的时间消耗情况。<br>speed-measure-webpack-plugin使用方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const config = require(&apos;./webpack.base.config.js&apos;);</span><br><span class="line">const SpeedMeasurePlugin = require(&quot;speed-measure-webpack-plugin&quot;);</span><br><span class="line">const smp = new SpeedMeasurePlugin();</span><br><span class="line">smp.wrap(config); // 打包速度测量</span><br></pre></td></tr></table></figure></p>
+<p>测试结果如下：<br><img src="/images/36.png" alt="图片"><br>整体构建耗时在17秒左右，这是首次构建时间。二次构建时间也在15秒左右；也就是说，我修改一行前端代码，需要等15秒左右才能在浏览器中的页面上看到修改后的代码执行效果，开发体验极差，开发效率极低。</p>
+<h1 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h1><p>关于webpack的优化方案有很多，不管官方的还是非官方的。总结起来大概有如下几种优化方式：</p>
+<ol>
+<li>优化模块搜索、模块解析时间（loader配置，resolve.module配置，resolve.alias配置，resolve.extensions 配置，resolve.mainFields 配置，module.noParse 配置）</li>
+<li>优化代码压缩时间（terser-webpack-plugin）</li>
+<li>开启多进程打包（thread-loader）</li>
+<li>合理利用缓存（cache-loader，HardSourceWebpackPlugin ）</li>
+</ol>
+<h3 id="工作台使用方案"><a href="#工作台使用方案" class="headerlink" title="工作台使用方案"></a>工作台使用方案</h3><p>在经过各种尝试之后，发现很多优化措施对工作台构建速度提升都不是很明显。唯有在使用<strong><a href="https://www.npmjs.com/package/hard-source-webpack-plugin" title="hard-source-webpack-plugin" target="_blank" rel="noopener">hard-source-webpack-plugin</a></strong>优化后，二次构建耗时控制在了2秒左右，提速90%左右。考虑到实际开发中，二次构建的次数远远远远远远要大于首次构建的速度，强烈安利这个插件。附使用方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const HardSourceWebpackPlugin = require(&apos;hard-source-webpack-plugin-fixed-hashbug&apos;);</span><br><span class="line">config.plugins.unshift(</span><br><span class="line">    new HardSourceWebpackPlugin(&#123;</span><br><span class="line">        cacheDirectory: &apos;node_modules/.cache/hard-source/[confighash]&apos;,</span><br><span class="line">        configHash: function(webpackConfig) &#123;</span><br><span class="line">            return require(&apos;node-object-hash&apos;)(&#123;sort: false&#125;).hash(webpackConfig);</span><br><span class="line">        &#125;,</span><br><span class="line">        environmentHash: &#123;</span><br><span class="line">            root: process.cwd(),</span><br><span class="line">            directories: [],</span><br><span class="line">            files: [&apos;package-lock.json&apos;],</span><br><span class="line">        &#125;,</span><br><span class="line">        info: &#123;</span><br><span class="line">            mode: &apos;none&apos;,</span><br><span class="line">            level: &apos;debug&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">        cachePrune: &#123;</span><br><span class="line">            maxAge: 2 * 24 * 60 * 60 * 1000,</span><br><span class="line">            sizeThreshold: 50 * 1024 * 1024</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<h3 id="其他方案"><a href="#其他方案" class="headerlink" title="其他方案"></a>其他方案</h3><h1 id="此次优化过程中遇到的问题及解决方案"><a href="#此次优化过程中遇到的问题及解决方案" class="headerlink" title="此次优化过程中遇到的问题及解决方案"></a>此次优化过程中遇到的问题及解决方案</h1><h3 id="1-添加speed-measure-webpack-plugin插件后，二次构建报错"><a href="#1-添加speed-measure-webpack-plugin插件后，二次构建报错" class="headerlink" title="1. 添加speed-measure-webpack-plugin插件后，二次构建报错"></a>1. 添加speed-measure-webpack-plugin插件后，二次构建报错</h3><p><img src="/images/37.png" alt="图片"><br>目前还没有找到比较好解决方案，github有人提对应的issue，还没解决（我就用来测首次编译速度就够用了）。</p>
+<h3 id="2-hard-source-webpack-plugin使用报错。"><a href="#2-hard-source-webpack-plugin使用报错。" class="headerlink" title="2. hard-source-webpack-plugin使用报错。"></a>2. hard-source-webpack-plugin使用报错。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not freeze xxxxxxxxxx: Cannot read property &apos;hash&apos; of undefined</span><br></pre></td></tr></table></figure>
+<p><strong>解决方案</strong>：使用hard-source-webpack-plugin-fixed-hashbug插件代替</p>
+<h3 id="3-speed-measure-webpack-plugin与hard-source-webpack-plugin一起使用会报错。"><a href="#3-speed-measure-webpack-plugin与hard-source-webpack-plugin一起使用会报错。" class="headerlink" title="3. speed-measure-webpack-plugin与hard-source-webpack-plugin一起使用会报错。"></a>3. speed-measure-webpack-plugin与hard-source-webpack-plugin一起使用会报错。</h3><p><img src="/images/38.png" alt="图片"><br><strong>解决方案：</strong>待解决（分开使用就OK）</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/articles/javascript设计模式之Observer(观察者)模式和Publish Subscribe模式.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript设计模式之Observer(观察者)模式和Publish/Subscribe模式</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="webpack性能优化篇" data-title="webpack性能优化篇，二次构建提速90%" data-url="http://yoursite.com/articles/webpack性能优化篇.html" data-images="/images/head.jpg" data-content="webpack性能优化篇，二次构建提速90%">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>

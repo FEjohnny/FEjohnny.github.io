@@ -115,7 +115,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/PWA/" style="font-size: 16.67px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/promise/" style="font-size: 13.33px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 13.33px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/设计模式/" style="font-size: 13.33px;">设计模式</a>
+						<a href="/tags/PWA/" style="font-size: 17.5px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/node/" style="font-size: 12.5px;">node</a> <a href="/tags/promise/" style="font-size: 12.5px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/前端/" style="font-size: 17.5px;">前端</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/测试/" style="font-size: 15px;">测试</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/自动化/" style="font-size: 15px;">自动化</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a>
 					</div>
 				</section>
 				
@@ -172,6 +172,387 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-PWA技术之service workers" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/PWA技术之service workers.html" class="article-date">
+  	<time datetime="2018-06-09T07:41:04.000Z" itemprop="datePublished">2018-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/PWA技术之service workers.html">
+        PWA技术之service workers
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h1><p>&emsp;&emsp;Service Workers是PWA的关键。我觉得它最主要的一个功能就是：使你可以不通过网络连接来访问资源。它是一个运行于后台的js脚本，只需短短几行代码，即可完成拦截网络请求，处理推送消息和并行执行任务等任务。如果当前客户端不支持service workers，它们只是简单的回退，应用程序就作为一个普通的应用程序来运行，这也就是Progressive（渐进增强）的由来；也就是指，你完全可以先创建一个在任何地方运行的应用，然后为支持高级功能的设备增强体验。</p>
+<p>&emsp;&emsp;如何理解service workers？来看Google 的 Jeff Posnick 是如何描述他们的：“将你的网络请求想象成飞机起飞。Service Worker 是路由请求的空中交通管制员。它可以通过网络加载，或甚至通过缓存加载。（甚至可以重定向加载）”。也就是说，Service Workers 能够拦截进出的 HTTP 请求，从而完全控制你的网站。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/service-workers/">service workers</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/PWA技术之service workers.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-什么是PWA" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/什么是PWA.html" class="article-date">
+  	<time datetime="2018-06-09T05:01:37.000Z" itemprop="datePublished">2018-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/什么是PWA.html">
+        什么是PWA
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-什么是PWA"><a href="#一-什么是PWA" class="headerlink" title="一.什么是PWA"></a>一.什么是PWA</h1><p>&emsp;&emsp;Progressive Web App, 简称 PWA，是提升 Web App 的体验的一种新方法，能给用户原生应用的体验。</p>
+<p>&emsp;&emsp;PWA 能做到原生应用的体验不是靠特指某一项技术，而是经过应用一些新技术进行改进，在安全、性能和体验三个方面都有很大提升，PWA 本质上是 Web App，借助一些新技术也具备了 Native App 的一些特性，兼具 Web App 和 Native App 的优点。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/什么是PWA.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-自己动手实现一个Promise类" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/自己动手实现一个Promise类.html" class="article-date">
+  	<time datetime="2018-05-27T11:32:35.000Z" itemprop="datePublished">2018-05-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/自己动手实现一个Promise类.html">
+        自己动手实现一个Promise类
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;首先，我们来看一下Promise的基础用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//定义一个函数，获取用户id</span><br><span class="line">function getUserId() &#123;</span><br><span class="line">return new Promise(function (resolve) &#123;</span><br><span class="line">    //用setTimeout模拟http异步请求</span><br><span class="line">setTimeout(function () &#123;</span><br><span class="line">        if(true)&#123;</span><br><span class="line">            resolve(1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,1000);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">promise</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/自己动手实现一个Promise类.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-http状态码和首部字段详解" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/http状态码和首部字段详解.html" class="article-date">
+  	<time datetime="2018-05-22T13:06:42.000Z" itemprop="datePublished">2018-05-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/http状态码和首部字段详解.html">
+        http状态码和首部字段详解
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;http：HyperText Transfer Protocol 超文本传输协议</p>
+<p>&emsp;&emsp;诞生背景：1990年问世</p>
+<h3 id="tcp-ip按层次分别分为4层："><a href="#tcp-ip按层次分别分为4层：" class="headerlink" title="tcp/ip按层次分别分为4层："></a>tcp/ip按层次分别分为4层：</h3><pre><code>应用层：决定向用户提供应用服务时通信的活动。http也处于该层。
+传输层：对上层的应用层，提供处于网络链接中两台计算机之间的数据传输。有tcp（传输控制协议）和udp（用户数据报协议）。
+网络层：用来处理在网络上流动的数据包，该层规定了通过怎样的路径（传输路线）到达对方计算机，并把数据包传送给对方，与对方计算机之间通过多太计算机或网络设备进行传输时，网络层所起的作用就是在众多的选项内选择一条传输路线。
+链路层：又名数据链路层/网络接口层，用来处理链接网络的硬件部分，硬件上的范畴均在链路层的作用范围之内。
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/http状态码和首部字段详解.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-Promise初探" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/Promise初探.html" class="article-date">
+  	<time datetime="2018-05-20T11:08:42.000Z" itemprop="datePublished">2018-05-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/Promise初探.html">
+        Promise初探
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Promise概念"><a href="#1-Promise概念" class="headerlink" title="1.Promise概念"></a>1.Promise概念</h1><p>&emsp;&emsp;Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。<br>
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">promise</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/Promise初探.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-JavaScript 完整编年史" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/JavaScript 完整编年史.html" class="article-date">
+  	<time datetime="2018-05-15T02:53:41.000Z" itemprop="datePublished">2018-05-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/articles/JavaScript 完整编年史.html">
+        JavaScript 完整编年史
+        
+      </a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code>Where did we start, where are we now, how did we get here, and why?
+</code></pre><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>&emsp;&emsp;In 2017, JavaScript development can leave newcomers to the language—and many veterans—paralyzed, unsure of where to begin or which paths are the right ones to take. People often dive into the latest-and-greatest without any real understanding of why it’s so great (or why it might not be). Understanding JavaScript’s history can help make sense of its current state.</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+      
+        <p class="article-more-link">
+          <a href="/articles/JavaScript 完整编年史.html#more">more >></a>
+        </p>
+      
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
   
     <article id="post-js replace（）方法用法详解，用css画三角形， css3 filter用法，css浮动的特性" class="article article-type-post" itemscope="" itemprop="blogPost">
   
@@ -426,274 +807,9 @@ replacement还可以是一个函数，函数有三个变量可选（a,b,c），a
 
 
   
-    <article id="post-移动端终极适配方案" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/articles/移动端终极适配方案.html" class="article-date">
-  	<time datetime="2017-08-31T03:53:16.000Z" itemprop="datePublished">2017-08-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/移动端终极适配方案.html">
-        移动端终极适配方案
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;以前对于移动端页面处理一般都是采用自适应布局来处理的，所谓自适应就是可以保证页面在所以页面都可以有正确都展示效果，比如横向的四等分、固定左侧导航+内容展示等。但是这种方案使得页面在不同屏幕的展示效果是不一致，主要集中在字体大小和页面内容的高度上的，字体可能会做一些常用终端的适配也不能覆盖全部终端，内容高度上，iphone6第一屏幕展示的内容可能就比iphone5要多。所以这次要介绍的这个终极适配方案就是为来解决这些问题的。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动端适配/">移动端适配</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/articles/移动端终极适配方案.html#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-jquery学习之目录" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/articles/jquery学习之目录.html" class="article-date">
-  	<time datetime="2017-05-11T02:51:11.000Z" itemprop="datePublished">2017-05-11</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/jquery学习之目录.html">
-        jquery学习之目录
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="一、核心"><a href="#一、核心" class="headerlink" title="一、核心"></a>一、核心</h1><p>jQuery核心函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jquery([selector,[context]])，selector用来查找的字符串，context为待查找的DOM集或者jquery对象。是jquery的核心功能函数。</span><br><span class="line"></span><br><span class="line">jquery(html,[ownerDocument])，提供原始的html标记字符串，动态创建jquery对象包装的DOM元素，同时设置属性、事件等。</span><br><span class="line"></span><br><span class="line">jquery(callback)，$(document).ready()的简写。$(function()&#123;&#125;) / jQuery(function($)&#123;&#125;)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/articles/jquery学习之目录.html#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-javascript数组、字符串操作常用方法" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/articles/javascript数组、字符串操作常用方法.html" class="article-date">
-  	<time datetime="2017-03-08T09:16:37.000Z" itemprop="datePublished">2017-03-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/javascript数组、字符串操作常用方法.html">
-        javascript数组、字符串操作常用方法
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><pre><code>1.字符串转换：19.toString()或者19+“”。
-
-2.字符串分割（返回数组形式）：split（&quot;,&quot;,length），接收连个参数：分割符，返回的数组长度。
-
-3.获取字符串长度：str.length。
-
-4.查询字符串：
-
-    str.indexOf(&quot;abc&quot;)：从头开始，找到则返回对应下表，有多个匹配则返回最后一个的下标，可接收第二个可选参数，表示开始查询的位置。
-
-    str.lastIndexOf(&apos;abc&apos;)：从末尾开始查找，找到则返回对应下表，有多个匹配则返回最后一个的下标，可接收第二个可选参数，表示开始查询的位置。
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/articles/javascript数组、字符串操作常用方法.html#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-javascirpt之正则表达式" class="article article-type-post" itemscope="" itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/articles/javascirpt之正则表达式.html" class="article-date">
-  	<time datetime="2017-03-04T18:52:14.000Z" itemprop="datePublished">2017-03-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/articles/javascirpt之正则表达式.html">
-        javascirpt之正则表达式
-        
-      </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>RegExp对象表示正则表达式，它是对字符串执行模式匹配的工具；</p>
-<p>正则表达式的基本语法如下2种：</p>
-<ol>
-<li><p>直接量语法<br>/pattern/attributes;<br>/pattern/attributes;</p>
-</li>
-<li><p>创建RegExp对象的语法<br>new RegExp(pattern,attributes);<br>参数：参数pattern是一个字符串，指定了正则表达式的模式；参数attributes是一个可选的参数，包含属性 g，i，m，分别使用与全局匹配，不区分大小写匹配，多行匹配；<br>@return 返回值：一个新的RegExp对象，具有指定的模式和标志；</p>
-      
-    </li></ol></div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-      
-        <p class="article-more-link">
-          <a href="/articles/javascirpt之正则表达式.html#more">more >></a>
-        </p>
-      
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>
@@ -701,7 +817,7 @@ replacement还可以是一个函数，函数有三个变量可选（a,b,c），a
   <div class="outer">
     <div id="footer-info">
       <div class="footer-left">
-        &copy; 2019 johnny
+        &copy; 2020 johnny
       </div>
         <div class="footer-right">
           <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>

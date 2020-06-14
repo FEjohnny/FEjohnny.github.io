@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>陈俊，johnny, 博客， 技术， 前端-升级angularjs到angular | johnny的12维空间</title>
+
+  <!-- keywords -->
+  
+    <meta name="keywords" content="陈俊，johnny, 博客， 技术， 前端">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&amp;emsp;&amp;emsp;升级angularjs到angular">
+<meta name="keywords" content="前端,自动化,测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="升级angularjs到angular">
+<meta property="og:url" content="http://yoursite.com/articles/为什么升级angularjs.html">
+<meta property="og:site_name" content="johnny的12维空间">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;升级angularjs到angular">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-16T08:43:33.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="升级angularjs到angular">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;升级angularjs到angular">
+  
+    <link rel="alternative" href="/atom.xml" title="johnny的12维空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/head.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+
+  <script src="//cdn.bootcss.com/require.js/2.3.2/require.min.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+
+  
+</head></html>
+<body>
+  <div id="container">
+    <div id="particles-js"></div>
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/images/head.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">johnny</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">johnny的个人博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/PWA/" style="font-size: 17.5px;">PWA</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/letcode/" style="font-size: 10px;">letcode</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a> <a href="/tags/node/" style="font-size: 12.5px;">node</a> <a href="/tags/promise/" style="font-size: 12.5px;">promise</a> <a href="/tags/service-workers/" style="font-size: 10px;">service workers</a> <a href="/tags/timers/" style="font-size: 10px;">timers</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/前后端协作/" style="font-size: 10px;">前后端协作</a> <a href="/tags/前端/" style="font-size: 17.5px;">前端</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/性能优化/" style="font-size: 10px;">性能优化</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/测试/" style="font-size: 15px;">测试</a> <a href="/tags/浏览器/" style="font-size: 10px;">浏览器</a> <a href="/tags/移动端适配/" style="font-size: 10px;">移动端适配</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tags/自动化/" style="font-size: 15px;">自动化</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/smackgg/hexo-theme-smackdown">smackdown</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">johnny</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/images/head.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">johnny</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">johnny的个人博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-为什么升级angularjs" class="article article-type-post" itemscope="" itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/articles/为什么升级angularjs.html" class="article-date">
+  	<time datetime="2018-09-16T08:42:35.000Z" itemprop="datePublished">2018-09-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      升级angularjs到angular
+      
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/测试/">测试</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自动化/">自动化</a></li></ul>
+	</div>
+
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&emsp;&emsp;升级angularjs到angular</p>
+<a id="more"></a>
+<p>升级angularjs到angular：<br>组件化是趋势。<br>生态环境的支持。<br>性能提升。<br>至今许多企业仍然在使用 AngularJS 1.x 构建复杂的 Web 应用，通常这些项目都历史悠久，代码庞大，经历过许多不同开发人员的维护。尽管 AngularJS 曾经那么流行，但它毕竟是十年前的框架，现在的前端开发是属于 React、Vue 和 Angular 等现代框架的时代，虽然通过一些复杂的构建工具配置，也能享受到 Type（ES6）、Webpack 等好处，但仍然是戴着镣铐跳舞，力不从心。再加上 Angular 团队决定不再为它开发新功能，社区许多库也停止更新后，所有的重心都转移到了新版的 Angular</p>
+<p>一、为什么要升级</p>
+<pre><code>1. 关于angular
+    a. 组件化是趋势。
+    b. 生态环境的支持。
+    c. 性能提升。
+    d. 至今许多企业仍然在使用 AngularJS 1.x 构建复杂的 Web 应用，通常这些项目都历史悠久，代码庞大，经历过许多不同开发人员的维护。尽管 AngularJS 曾经那么流行，但它毕竟是十年前的框架，现在的前端开发是属于 React、Vue 和 Angular 等现代框架的时代，虽然通过一些复杂的构建工具配置，也能享受到 Type（ES6）、Webpack 等好处，但仍然是戴着镣铐跳舞，力不从心。再加上 Angular 团队决定不再为它开发新功能，社区许多库也停止更新后，所有的重心都转移到了新版的 Angular。
+2. 关于typscript
+    a. 强类型检查
+        使用强类型编写代码，可以使代码代码更加严谨。cannot read property ‘x’ of undefined或undefined is not a function是javascript运行时出现的错误，也是在线上发现的前端导致系统功能异常的错误，而目前我们所使用的方法几乎停留在运行时添加类型检测，但是这种做法比较累赘，而且一旦忘记可能又是一个bug。而恰恰typscript编译检查最明显的好处就是会减少很多类似bug，每一个变量都有类型约束，防止了我们申明了一个变量，在其他地方赋值时出现类型不同导致的问题，这样我们就只需要将尽力集中在逻辑处理上即可。
+    b. 使Javascript面向对象的特性更加明显。
+    c. 当你在使用 TypeScript 的时候，你其实已经在用最新的 JavaScript。
+</code></pre><p>升级步骤：<br>模块化，引入webpack等打包工具<br>如果已经用了webpack，需要升级到v4+版本<br>webpack2升级到4的错误处理：<br>错误1：var outputName = compilation.mainTemplate.applyPluginsWaterfall(‘asset-path’, outputOptions.filename, {TypeError: compilation.mainTemplate.applyPluginsWaterfall is not a function<br>解决：npm install <a href="mailto:html-webpack-plugin@3.2.0" target="_blank" rel="noopener">html-webpack-plugin@3.2.0</a> -D<br>错误2：Chunk.entrypoints: Use Chunks.groupsIterable and filter by instanceof Entrypoint instead<br>解决：npm install extract-text-webpack-plugin@next<br>错误3：TypeError: Cannot read property ‘babel’ of undefined<br>解决：npm install babel-loader@7 -D<br>迁移到typescript<br>什么项目场景适合使用typescript?<br>正在使用babel编译的项目<br>无论是配置友好度,编译效率,语法兼容,都完全找不到理由选择babel<br>特别适合nodejs项目<br>完全兼容ES5,6…N版的代码,低成本迁徙,静态类型检测,接口interface定义,大大增强了代码健壮性<br>所有的大型JS项目<br>typescript是由 Anders Hejlsberg 大神(C#之父)开发,编译效率惊人<br>越大的项目,产生的作用越明显,完成迁徙之后,你基本可以立即找到埋的很深的坑<br>为js而生的开发工具 vscode ,微软出品的IDE,你懂的,觉得项目大了太卡,你可以试试<br>前端项目:react,vue,angular2<br>国内很火的react antd源码使用typescript编写<br>angular2的默认开发语言<br>typescript相关vue项目在github上也层出不穷<br>html5游戏项目<br>typescript是热门的egret(白鹭)引擎唯一开发语言，egret5.0.0 6月1号发布！<br>首先使用重命名工具renamex-cli将项目目录./src中的所有js文件后缀 批量改成.ts<br>npm i -g renamex-cli<br>//then<br>renamex start -p “src/*<em>/</em>.js” -r “[name].ts” -t no<br>安装typescript<br>Npm I —save-dev typescript<br>添加tsconfig.json配置文件<br>修改webpack配置<br>然后出现了很多错，大部分都是找不到对应模块和对应属性不存在<br>修改所以import文件后缀为.ts<br>错误信息：’rootDir’ is expected to contain all source；解决方法：tsconfig.json文件的rootDir设置有问题，其实只需要设置include就行了<br>TS1192: Module ‘“/Users/johnny/Documents/cs_workspace/client/node_modules/angular/index”‘ has no default export<br>导入<em>.tmpl.html， 新建html.d.ts文件，内容：declare module “</em>.html” {<br>    const template: string;<br>    export default template;<br>}<br>然后倒入的时候：import * as template from ‘./index.template.html’</p>
+<ol>
+<li><p>问题：ERROR in admin/admin.4f55e877.js from UglifyJs<br>Unexpected token: punc «.» [admin/admin.4f55e877.js:1013,19]<br>解决：</p>
+<p>Entrypoint undefined = extract-text-webpack-plugin-output-filename:</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/articles/面试基础 copy.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          前端基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/articles/前端测试分类.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端测试分类</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="ds-share share" data-thread-key="为什么升级angularjs" data-title="升级angularjs到angular" data-url="http://yoursite.com/articles/为什么升级angularjs.html" data-images="/images/head.jpg" data-content="升级angularjs到angular">
+    <div class="ds-share-inline">
+      <ul class="ds-share-icons-16">
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
+    </div>
+ </div>
+ 
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2020 johnny
+      </div>
+        <div class="footer-right">
+          <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/smackgg/hexo-theme-smackdown" target="_blank">Smackdown</a>
+        </div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="/js/main.js"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js"></script>
+
+
+  </div>
+</body>
+</html>
